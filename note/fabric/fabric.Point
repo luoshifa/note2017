@@ -1,0 +1,37 @@
+fabric.Point
+
+构造函数：new Point(Number, Number)：参数一为X坐标；参数二为Y坐标。
+
+类函数成员：
+fabric.Point add(fabric.Point)：给该Point对象加上一个指定点（的坐标），并返回新实例化的那个点。（译者注：从源码中得知，add函数内直接new一个Point，然后返回）
+fabric.Point addEquals(fabric.Point)：为该Point对象加上一个指定点（的坐标）。（译者注：通过源码得知，该函数中直接将当前的X/Y坐标替换成新点的X/Y坐标）。
+fabric.Point distanceFrom(fabric.Point)：返回该点与给定的点的距离。
+fabric.Point divide(Number)：将该点坐标除以给定的因子，并返回一个新的点。
+fabric.Point divideEquals(Number)：将该点坐标除以给定的因子。
+boolean eq(fabric.Point)：如果该点与给定的点相同，则返回true。
+boolean gt(fabric.Point)：如果该点大于给定的点，则返回true。
+boolean gte(fabric.Point)：如果该点大于等于给定的点，则返回true。
+fabric.Point lerp(fabric.Point, Number)：返回一个新点，这个新点是旧点与指定点插值计算出的结果点。（译者注：不太懂这个意思，源码是这样的return new Point(this.x + (that.x - this.x) * t, this.y + (that.y - this.y) * t);）
+boolean lt(fabric.Point)：如果该点小于给定的点，则返回true。
+boolean lte(fabric.Point)：如果该点小于等于给定的点，则返回true。
+fabric.Point max(fabric.Point)：返回一个新点，新点的X/Y坐标由新旧两点X/Y坐标最大值组成。
+fabric.Point midPointFrom(fabric.Point)：返回该点与指定点的中点。
+fabric.Point min(fabric.Point)：返回一个新点，新点的X/Y坐标由新旧两点X/Y坐标最小值组成。
+fabric.Point multiply(Number)：将该点坐标乘以给定的因子，并返回一个新点。
+fabric.Point multiplyEquals(Number)：将该点坐标乘以给定的因子。
+fabric.Point scalarAdd(Number)：将该点坐标加上给定的因子，并返回一个新点。
+fabric.Point scalarAddEquals(Number)：将该点坐标加上给定的因子。
+fabric.Point scalarSubtract(Number)：将该点坐标减去给定的因子，并返回一个新点。
+fabric.Point scalarSubtractEquals(Number)：将该点坐标减去给定的因子。
+void setPointFrom(fabric.Point)：将指定点的坐标赋值给该点。
+void setXY(Number, Number)：为该点设置X/Y坐标。参数一为X坐标；参数二为Ｙ坐标。
+fabric.Point subtract(fabric.Point)：给该Point对象减去一个指定点（的坐标），并返回新实例化的那个点。
+fabric.Point subtractEquals(fabric.Point)：为该Point对象减去一指定点（的坐标）。
+void swap(fabric.Point)：将该点与指定点的X/Y坐标互换。
+String toString()：返回一个代表该Point实例的字符串。
+
+
+
+
+
+

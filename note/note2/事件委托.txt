@@ -1,0 +1,32 @@
+1，什么是事件委托：就是让别人来做，这个事件本来是加在某些元素上的，然而你却加到别人身上来做，
+完成这个事件。
+适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。
+有三个同事预计会在周一收到快递。为签收快递，有两种办法：一是三个人在公司门口等快递；
+二是委托给前台MM代为签收。现实当中，我们大都采用委托的方案（公司也不会容忍那么多员
+工站在门口就为了等快递）。前台MM收到快递后，她会判断收件人是谁，然后按照收件人的要求签收，
+甚至代为付款。这种方案还有一个优势，那就是即使公司里来了新员工（不管多少），
+前台MM也会在收到寄给新员工的快递后核实并代为签收。
+利用冒泡的原理，
+把事件加到父级上，执行效果只是在冒泡到需要添加事件的元素。
+好处呢：1，提高性能。减少整个页面的交互就绪时间
+<ul id="test">
+    <li>fsdfds</li>
+    <li>dfgfedgdf</li>
+    <li>ghgfdhg</li>
+    <li>dfgfdger</li>
+    <li>retretret</li>
+</ul>
+<script>
+    var $ul=$("#test");
+    $ul.click(function (ev) {
+        var event=ev ||window.event;
+        var target=event.target || event.srcElement;
+        if (target.nodeName.toLowerCase()=="li")  //关键
+        {
+            $(target).css("background","red");
+        }
+    })
+</script>
+节点：元素节点，属性节点，文本节点
+tagName只能在元素标签上使用，nodeName可以在所有节点使用。
+好处2，新添加的元素还会有之前的事件。

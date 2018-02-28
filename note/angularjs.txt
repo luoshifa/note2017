@@ -1,0 +1,64 @@
+AngularJS 表达式
+AngularJS 使用 表达式 把数据绑定到 HTML。
+AngularJS 表达式写在双大括号内：{{ expression }}。
+
+AngularJS 指令
+ng-app 指令初始化一个 AngularJS 应用程序。
+ng-init 指令初始化应用程序数据。
+ng-model 指令把元素值（比如输入域的值）绑定到应用程序。
+ng-repeat 指令会重复一个 HTML 元素： <li ng-repeat="x	in names">
+创建自定义的指令
+app.directive("runoobDirective", function() {
+    return {
+        template : "<h1>自定义指令!</h1>"
+    };
+});
+使用驼峰法来命名一个指令， runoobDirective, 但在使用它时需要以 
+- 分割, runoob-directive:
+
+AngularJS ng-model 指令
+ng-model 指令用于绑定应用程序数据到 HTML 控制器(input, select, 
+textarea)的值。
+ng-model 指令根据表单域的状态添加/移除以下类：
+ng-empty,ng-not-empty,ng-touched,ng-untouched,ng-valid
+ng-invalid,ng-dirty,ng-pending,ng-pristine
+
+AngularJS Scope(作用域)
+当你在 AngularJS 创建控制器时，你可以将 $scope 对象当作一个参数传递:
+$rootScope，它可以作用在 ng-app 指令包含的所有 HTML 元素中。
+$rootScope.lastname = "Refsnes";
+
+AngularJS 控制器: 控制 AngularJS 应用程序的数据。
+
+AngularJS 过滤器
+过滤器可以使用一个管道字符（|）添加到表达式和指令中。
+
+AngularJS 服务(Service)
+在AngularJS中服务是一个函数或对象可在你的AngularJS应用中使用。
+$location 服务，它可以返回当前页面的 URL 地址。
+$scope.myUrl = $location.absUrl();
+$http 服务
+读取 JSON 文件,$http.get(url) 是用于读取服务器数据的函数。
+$timeout 服务
+AngularJS $timeout 服务对应了 JS window.setTimeout 函数。
+$interval 服务
+AngularJS $interval 服务对应了 JS window.setInterval 函数。
+创建自定义服务
+app.service('hexafy', function() {
+    this.myFunc = function (x) {
+        return x.toString(16);
+    }
+});
+
+AngularJS Select(选择框)
+<select ng-model="selectedName" ng-options="x for x in names">
+</select>
+ng-repeat 指令是通过数组来循环 HTML 代码来创建下拉列表，
+但 ng-options 指令更适合创建下拉列表，它有以下优势：
+使用 ng-options 的选项是一个对象， ng-repeat 是一个字符串。
+使用对象作为数据源, x 为键(key), y 为值(value):
+<select ng-model="selectedSite" ng-options="x for (x, y) in sites">
+</select>
+
+
+

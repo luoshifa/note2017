@@ -1,0 +1,23 @@
+fabric.Collection 命名空间
+
+类函数成员：
+static Self add(fabric.Object)：将指定的Object加入当前集合中，并且当renderOnAddRemove不为false时对canvas进行重新渲当染。Object必须为fabric.Object的实例或其子类实例。
+static Number complexity()：返回一个代表集合复杂度的数字。（译者注：从源码中得知，该复杂度是将集合中所有元素的复杂度之和）
+static Boolean contains(Object)：如果集合中包含了指定的Object则返回true。
+static Self forEachObject(Function, Object)：对集合中所有的元素调用指定的回调函数。参数一为回调函数，回调函数的第一个参数是当前的Object，第二个参数是当前Object的索引值，第三个参数是由所有的Object组成的数组；参数二是参数一回调函数的context（即回调函数this的实际变量），如果没有指定则为window。
+static Array getObjects(String opt)：返回由集合所有子成员组成的数组。参数一为指定类型，如果指定了特定类型，只有该类型的Object会回返回，该参数在版本1.3.10被引入。
+static Self insertAt(Object, Number, Boolean)：将指定的Object插入集合指定的位置，当Canvas的renderOnAddRemove属性不为false时Canvas会被重绘，这个Object必须是fabric.Object或其子类的实例。参数一为指定的Object；参数二位集合的指定位置；参数三为true时集合不会发生splice（译者注：即指定位置如果本来存有某对象则会直接被替换掉）。
+static Boolean isEmpty()：如果集合中不存在任何成员时返回true。
+static Self item(Number)：返回指定索引下的Object。（译者注：根据源码，这里返回的应该是各种fabirc.Object或其子类的实例，而不是Self。）
+static Self remove(fabric.Object, fabric.Object, fabirc.Object, ...)：从集合中移除指定的成员，当Canvas的renderOnAddRemove属性不为false时Canvas会被重绘。（译者注：根据源码，这里的参数是可变参数，可指定0个或多个fabric.Object的实例）。
+static Number size()：返回集合中的成员数。
+
+
+
+
+
+
+
+
+
+

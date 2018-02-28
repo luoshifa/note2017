@@ -1,0 +1,8 @@
+px: css pixels 逻辑像素，浏览器使用的抽象单位。
+dp,dt: device independent pixels 设备无关像素。
+dpr:devicePixelRatio 设备像素缩放比。
+
+计算公式：1px=(dpr)^2*dp;
+ppi:屏幕没英寸的像素数量，单位英寸内的像素密度。
+ppi越高，清晰度越高，但可视度越小，系统默认设置缩放比越大。
+测试

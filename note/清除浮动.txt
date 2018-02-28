@@ -1,0 +1,23 @@
+方法一：
+.clearfix:after{
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:"";
+    clear:both;
+    height:0;
+}
+.clearfix{
+    zoom:1;
+}
+方法二：
+.clearfix:before,.clearfix:after{
+    content:"";
+    dispaly:table;
+}
+.clearfix:after{
+    clear:both;
+}
+.clearfix{
+    zoom:1;
+}

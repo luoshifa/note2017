@@ -1,0 +1,36 @@
+import echarts from 'echarts'
+全局引入echarts
+Vue.prototype.$echarts = echarts 
+编写一个画图表的方法，配置好再调用。
+方法在mounted钩子中调用或者通过某个触发的事件。避免在dom没有渲染前使用。
+drawChart(){
+                let myChart = echarts.init(document.getElementById('chart2'))
+                // 绘制图表
+                myChart.setOption({
+                    title: {},
+                    tooltip: {},
+                    toolbox: {},
+                    xAxis: {
+                        type : 'category',
+                        data: this.dataX
+                    },
+                    legend:{
+                        data:['日订单数量']
+                    },
+                    yAxis: {},
+                    series: [
+                        {
+                            name: '日订单数量',
+                            type: 'line',
+                            data: this.data_1,
+                            itemStyle:{
+                                normal:{
+                                    barBorderColor:'rgba(123,213,211,1)',
+                                    color:'rgba(0,255,0,1)',
+                                    label:{show:true}
+                                }
+                            }
+                        }
+                    ]
+                });
+            }

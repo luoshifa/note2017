@@ -1,0 +1,26 @@
+avalon
+使用Object.defineProperties、 VBScript、 Object.observe，纯事件驱动，兼容IE6，
+DOM的兼容性处理可与jQuery媲美，体积少
+早期的四大MVVM框架，都有大公司引衔：
+angularjs
+google出品，思想来自flex，IoC， 脏检测，自定义标签，受限于绑定数量，一般不能超过2000个，
+入门容易上手难，大量避不开的概念
+emberjs
+原来是苹果公司的内部项目，使用Object.defineProperties， 体型庞大，MVVM只是其很少一部分
+knockoutjs
+微软出品，使用函数偷龙转凤，最短编辑长度算法实现DOM的同步，兼容IE6，实现高超，但源码极其难读
+winjs
+微软出品，使用Object.defineProperties，一个庞大的UI库
+这一两年冒出来的：
+react
+facebook出品，带来virtual dom的革命性概念，受限于视图的规模
+rivets
+API比较精致
+way
+使用定时间同步
+vue
+使用Object.defineProperties实现同步，实现精致，但功能薄弱
+regular
+最近一个月才冒出来的新东西，网易推出的JS框架，自称AngularJS与React的合体
+drop
+在知乎又刚刚听说一个，用TypeScript写的

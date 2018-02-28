@@ -1,0 +1,41 @@
+fabric 命名空间
+
+下级命名空间：
+Collection、Observable、util
+
+包含的类：
+BaseBrush、Canvas、Canvas、Circle、CircleBrush、Color、Ellipse、Gradient、Group、Image、Intersection、IText、Line、Object、Path、PathGroup、Pattern、PatternBrush、PencilBrush、Point、Polygon、Polyline、Rect、Shadow、SprayBrush、StaticCanvas、Text、Triangle
+
+类属性成员：
+DPI：static成员，屏幕上每英寸的像素数，默认情况下为96，可以根据实际的情况进行修改。
+isLikelyNode(boolean)：static成员，在nodejs环境中，该值为true。
+isTouchSupported(boolean)：static成员，在触摸屏环境下，该值为true。
+SHARED_ATTRIBUTE(Array)：static成员，从SVG元素转换得到的所有属性。
+
+类函数成员：
+static Object createCanvasForNode(Number, Number, Object opt, Object opt)：只有在node.js环境中该函数才可用。参数一为画布的宽；参数二为画布高；参数三可选，传递给FabricCanvas的参数选项；参数四可选，传递给NodeCanvas的参数选项。返回值为封装的canvas实例。
+static Object getCSSRule(SVGDocument)：返回指定的SVG文档的CSS规则。参数为SVG文档，返回值为CSS规则。
+static Object getGradientDefs(SVGDocument)：转换指定的SVG文档，返回的有渐变的定义。返回的渐变定义中，key为渐变元素的id，value为渐变定义。
+static void loadSVGFromString(String, Function, Function opt)：传入一个SVG文档相关的字符串，进行转换并传给一系列fabric元素。参数一为需要转换的字符串；参数二，无说明；参数三为更进一步的回调，在每个fabric元素被创建时进行调用。
+static void loadSVGFromURL(String, Function, Function opt)：传入一个SVG文档相关的URL，进行解析转换并传给一系列的fabric元素。编者注：SVG是通过XMLHttpRequest获取的，所有遵守SOP原则（译者注：就是要在同一个域名下）。参数一为URL；参数二，无说明；参数三为更进一步的回调，在每个fabric元素被创建时进行调用。
+static void log(Any opt)：console.log函数的封装。参数为需要输出的任意值。
+static Object parseAttributes(DOMElement, Array)：传入给完的DOM元素和需要转换的指定属性数组，返回一个属性相关的键值对对象。向上递归转换父节点。参数一为需要转换的DOM元素；参数二为需要转换的属性数组。
+static void parseElements(Array, Function, Object opt, Function opt)：将一个SVG元素的数据转换为一系列相关的fabric.*相关的实例。参数一为需要转换的SVG元素数组；参数二为回调函数，参数为fabric元素的数组，该数组是从SVG元素数组转换得到的；参数三为可选的选项对象，该参数无详细说明；参数四为更进一步的回调，在每个fabric元素被创建时进行调用。
+static void parseFontDeclaration(String, Object)：转换字体的短声明，将它的属性加入Object中。参数一为字体声明；参数二为转换结果。
+static Array parsePointsAttribute(String)：转换“点”的属性，返回点对应的数组。参数为代表点的字符串，译者注：通过源码可知该字符串的格式为x1,y1,x2,y2,x3,y3,...
+static Object parseStyleAttribute(SVGElement)：转换“style”属性，返回相关的样式数组。参数为需要转换的SVG元素。译者注：通过源码可知不单是SVG元素，DOM元素也可以通过该函数进行转换。
+static void parseSVGDocument(SVGDocument, Function, Function opt)：转换一个SVG文档，将它转为fabirc.*相关的实例数组，并将该数组传给回调函数。参数一为需要转换的SVG文档；参数二为回调函数，当SVG文档完成转换后被调用，回调的参数为转换后的fabric.*实例相关的Array；参数三为更进一步的SVG转换回调，在各个fabric元素被成功创建后时进行调用。
+static Array parseTransformAttribute(String)：转换“变换”属性，返回与之相关的数组。参数为包含着所有“变换”相关的属性的字符串。返回值包含着6个成员的变换矩阵。
+static void warn(Any opt)：console.warn函数的封装。
+
+
+
+
+
+
+
+
+
+
+
+

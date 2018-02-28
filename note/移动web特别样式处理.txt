@@ -1,0 +1,46 @@
+高清图片：
+移动web渲染图片，避免拉宽模糊，应该使用物理像素渲染，如100*100
+的图片，应该使用100dp*100dp。
+width：（w_value/dpr)px;
+heigth: (h_value/dpr)px;
+一像素边框：
+模糊的根本原因：1px使用2dp渲染
+解决方案：scaleY(.5)
+.sidebar .folder li{
+	padding: 8px 0 8px 15px;
+	color:#fff;
+	cursor:pointer;
+	position:relative;
+}
+.folder li + li:before{
+	position:absolute;
+	top:-1px;
+	left:0;
+	content:'';
+	width:100%;
+	heigth:1px;
+	border-top:1px solid #ddd;
+	-webkit-transform:scaleY(.5);
+}
+
+相对单位rem
+px略显固定，不能根据尺寸的大小改变，使用相对单位更能体现页面兼容。
+em：根据父节点的font-size为相对单位。（基值使用px）
+	多层嵌套下比较混乱难以控制。
+rem：是根据html的font-size为相对单位。（基值使用px）
+	更加能作为全局统一设置的度量。
+rem的基值设置多少为好，设备宽度的十分之一。看情况而定。
+
+不使用rem的情况：font-size
+字体的大小是趋向于阅读的实用性，不适合于排版布局。使用px保证
+在不同屏幕上表现一致。
+
+多行文本溢出：
+.class{
+	display:-webkit-box;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	word-break:break-all;
+	-webkit-box-orient:vertial;
+	-webkit-line-clamp:2;(定义行数)
+}

@@ -1,0 +1,9 @@
+fabric.util.Object 命名空间
+
+类函数成员：
+static Object clone(Object)：创建一个空的Object对象，并将指定的Object的可枚举属性复制到该空的Object对象上。
+static Object extend(Object, Object)：将指定的Object（参数二）的所有可枚举属性复制到另一个Object（参数一）上。译者注：clone()内部就是调用extend()来实现的。
+
+
+
+

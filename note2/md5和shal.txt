@@ -1,0 +1,4 @@
+md5加密后是32位字符串，
+shal加密后是40位字符串。
+sql语句支持这两种加密加密。
+eg：insert into userinfo value(1,"xiaoyy",sha1("xiaoyy"));

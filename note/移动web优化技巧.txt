@@ -1,0 +1,3 @@
+canvas代替image标签
+image表示是通过浏览器渲染，对于屌丝机加载图片时很卡，
+如果使用canvas，是通过cpu渲染。image画在canvas上。

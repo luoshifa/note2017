@@ -1,0 +1,31 @@
+用的哪个版本angular:使用的是1.4.6或者1.5.0
+angular的特点：
+1，MVC：model, view和controller三层
+Model用来保存数据，view是表现层也就是html+css，controller负责处理业务逻辑,
+2. MVVM 数据视图双向绑定(Model-View-ViewModel)
+
+用到了angular的哪些功能
+视图模型双向绑定
+过滤器
+自定义指令
+路由
+依赖注入
+
+路由相关
+ng-route还是ui-router
+UI-Router是Angular-UI提供的客户端路由框架，最大的优点：可以使用视图嵌套。
+路由的好处
+可以实现单页面应用（SPA:single page web application）
+.config(function ($routeProvider) {
+    $routeProvider.
+    when('/home', {
+        templateUrl: 'embedded.home.html',
+        controller: 'HomeController'
+    }).
+    when('/about', {
+        templateUrl: 'embedded.about.html',
+        controller: 'AboutController'
+    }).
+    otherwise({
+        redirectTo: '/home'
+    });

@@ -1,0 +1,14 @@
+fabric.util.string 命名空间
+
+类函数成员：
+static String camelize(String)：将指定的字符串驼峰化。
+static String capitalize(String, Boolean)：将指定的字符串转换为大写。参数一为指定的字符串；参数二，如果为true，则只有第一个字母转换成大字，其余字母保留不动，如果为false，则第一个字母转换为大写，而其余字母转换为小写。
+static String escapeXml(String)：将指定的字符串脱掉XML格式。（译者注：通过源码可知，就是转换掉字符：&/'/"/>/<）
+
+
+
+
+
+
+
+

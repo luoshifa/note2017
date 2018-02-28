@@ -1,0 +1,33 @@
+设备：
+braille ——触觉反馈设备
+embossed ——盲文印刷设备
+handheld ——小型或手持设备
+print ——打印机
+projection ——投影图像，如幻灯
+screen ——计算机显示器
+speech ——语音合成器
+tty ——打字机
+tv ——电视类
+根据不同设备加载不同样式：
+应用：
+@media print {
+/* 针对打印机的样式 */
+}
+加载：
+<link rel="stylesheet" href="main.css" media="screen" >
+
+媒体特性：
+width 布局视口宽度
+height 布局视口高度
+device-width 设备屏幕宽度
+device-height 设备屏幕高度
+orientation 设备方向
+aspect-ratio 视口宽高比
+device-aspect-ratio 屏幕宽高比
+resolution 设备像素密度
+
+根据不同媒体特性加载不同样式：
+应用：
+@media all and (min-width:500px) { … }
+加载：
+<link rel="stylesheet" href="wide.css" media="screen and (min-width:1024px)" />

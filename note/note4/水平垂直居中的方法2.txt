@@ -1,0 +1,32 @@
+方法一：
+div{
+            width:100px;
+            height:100px;
+            position: absolute;
+            left:50%;
+            top:50%;
+            margin-left: -50px;
+            margin-top: -50px;
+   }
+	
+方法二：
+div{
+            width:100px;
+            height:100px;
+            position: absolute;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto;
+   }
+   
+方法三：flex。父元素为弹性盒子模型。
+.father{
+	display: flex;
+	align-items: center;//侧轴方向对齐方式
+	justify-content: center;//主轴方向的对齐方式
+}
+
+flex-direction属性改变弹性和模型的对齐方式，也会改变主轴方向。同时改变罗以上两个
+对齐方式的效果。

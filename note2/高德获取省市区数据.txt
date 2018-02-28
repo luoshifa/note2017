@@ -1,0 +1,14 @@
+高德行政区域查询接口
+高度接口中不同的服务需要的key值种类不同
+相同的接口同一个key同一天允许调用的次数有限，所以不同的应用需要在应用中心新建应用获取新的key值。
+新建应用：选web服务类型
+$.ajax({
+            url:"http://restapi.amap.com/v3/config/district?keywords=中国&subdistrict=3&key=0fc9780bef3e9157f9dbb1b2962eaba0",
+            type:'get',
+            success:function (res) {
+                console.log(res)
+            },
+            error:function (res) {
+                console.log(res)
+            }
+        })

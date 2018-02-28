@@ -1,0 +1,9 @@
+插件基本雏形：
+(function(window,document){  
+    var MaskShare = function(){  
+  
+    };  
+    MaskShare.prototype = {};  
+  
+    window.MaskShare = MaskShare;  //暴露方法
+}(window,document)); 

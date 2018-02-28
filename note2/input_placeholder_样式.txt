@@ -1,0 +1,12 @@
+input::-webkit-input-placeholder{
+					color:#FFC80B;
+				}
+				input:-moz-placeholder{
+					color:#FFC80B;
+				}
+				input::-moz-placeholder{
+					color:#FFC80B;
+				}
+				input:-ms-input-placeholder{
+					color:#FFC80B;
+				}

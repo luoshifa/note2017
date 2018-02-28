@@ -1,0 +1,12 @@
+mysqli函数访问mysql服务器的步骤：
+1, 链接数据库管理系统。
+   mysqli_connect()
+2，选择一个要操作的数据库。
+   mysqli_select_db()
+3，发送要执行的sql语句。
+   mysqli_query('sql')
+4，读取数据库返回的数据。
+   mysqli_affected_rows()
+   mysqli_insert_id()
+5，关闭数据库，php中可以省略。
+   mysqli_close()

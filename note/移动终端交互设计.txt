@@ -1,0 +1,62 @@
+300毫秒的故事；
+移动web页面上的click事件响应都要慢上300ms；
+对于没有设计成移动端页面的网页，用户要通过双击等方式放大页面，
+来看清页面，为了确定用户是双击还是单击页面，safari需要300ms
+的延迟来判断。之后的iPhone和androi都采用了这个方式。300毫秒成为了
+一个规范。
+tap基础事件：
+使用tap事件代替click事件
+原理：
+在touchstart，touchend时记录时间，手指位置，在touchend是进行
+比较，如果手指位置为同意位置或允许移动一个非常小的距离。
+且时间间隔较短一般认为是200ms，且过程中未触发touchmove，即可认为
+触发了click，一般称他为tap。一般使用框架中的tap事件解决。
+
+tap点透bug
+在有多层元素的情况下，点击第一层，第二层也会被点击。
+原因：第一层消失后，300ms延迟触发的click事件被传到了第二层元素。
+解决方案：
+1，使用过度300ms的延迟。
+2，中间层dom元素的加入，让中间层接受这个穿透事件，稍后隐藏。
+3，上下都使用tap事件，原理上解决穿透bug，但不可避免原生标签的click事件。
+4，改用fastclick的库，(最新的zepto已经解决掉这个bug)
+
+touch基础事件
+移动设备中吃触摸才是交互的核心事件
+touchstart：手指触摸屏幕是发生，已经有手指在屏幕上不会触发。
+touchmove：手指在屏幕滑动，连续触发。
+touchend：手指离开屏幕是触发
+touchcancel：系统取消touch是触发。
+
+触摸事件专有触摸属性
+1，touches：跟踪触摸操作的touch对象数组。
+	clientX：在视口的X坐标。
+	clientY：在视口的Y坐标。
+	identifier：标识触摸的唯一id。
+	pageX：在页面中的X坐标。
+	pageY：在页面中的Y坐标。
+	screenX：在屏幕中的X坐标。
+	screenY：在屏幕中的Y坐标。
+	target：触摸的dom节点坐标。
+targetTouches：特定事件目标的touch对象数组。
+touch事件在安卓的bug
+在安卓只会触发一次touchstart，一次touchmove，touchend不触发。
+解决方案：在touchmove中加入event.preventDefault()。
+缺点：导致默认行为不发生。如scroll，导致页面不滚动。
+
+弹性滚动：
+客户端的页面滚动到顶部或底部，滚动条会多滑动一段距离，通过缓冲反弹的
+效果，给用户更好的体验。
+body自带弹性滚动，滚动式overflow：hidden失效，GIF和定时器暂停。
+局部弹性滚动：
+ios：
+body{
+	overflow:scroll;
+	-webkit-overflow-scrolling:touch;
+}
+安卓不支持原生的弹性滚动，可以借助第三方库iscroll实现。
+
+下拉刷新：使用touch。和tap的逻辑相近。
+
+上啦加载：使用scroll事件
+而不是touch事件(安卓中有bug)

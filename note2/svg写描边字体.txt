@@ -1,0 +1,36 @@
+html:
+<svg width="385" height="370">
+	<path d=""
+        class="path_c"
+    />
+</svg>
+d值又svg文件获取。
+css:
+.path_c{
+    fill:none;//让图像只有边框线，镂空
+}
+.path_c_active{
+    stroke: #291e22;
+    stroke-width: 2;
+    stroke-dasharray: 1754;
+    stroke-dashoffset: 1754;
+    fill: none;
+    -webkit-animation:path_c_out 2s ease-in-out forwards;
+    -o-animation:path_c_out 2s ease-in-out forwards;
+    animation:path_c_out 2s ease-in-out forwards;
+}
+@keyframes path_c_out{
+    0% {
+        stroke-dashoffset: 1754;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+通过js给path添加path_c_active类开始描边动画
+stroke-dasharray 表示虚线描边。可选值为：none, <dasharray>, inherit. 其中，none表示不是虚线；<dasharray>为一个逗号或空格分隔的数值列表。表示各个虚线端的长度。可以是固定的长度值，也可以是百分比值；inherit表继承。
+stroke-dashoffset 表示虚线的起始偏移。可选值为：<percentage>, <length>, inherit. 百分比值，长度值，继承。
+
+var path=document.querySelector('#pathCommon');
+    var length=path.getTotalLength();
+    console.log(length)

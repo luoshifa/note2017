@@ -1,0 +1,4 @@
+兼容
+跨域请求jsonp
+前后端json数据传输
+hack

@@ -1,0 +1,20 @@
+fabric.Intersection
+构造函数：new Intersection()
+
+类函数成员：
+void appendPoint(fabric.Point)：为交集添加一个点。
+void appendPoints(Array)：为交集添加一个数组，这个数组装载的都是fabric.Point成员。
+
+
+
+
+
+
+
+
+
+
+
+
+
+

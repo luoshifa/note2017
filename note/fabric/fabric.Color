@@ -1,0 +1,33 @@
+fabric.Color
+构造函数：
+fabric.Color new Color(string)：这是一个颜色类，目的是为了抽象和封装常用的颜色操作。fabric.Color是一个构造函数，用于创建一个fabric.Color对象实例。参数是一个十六进制或rgb(a)格式的字符串。
+
+类属性成员：
+colorNameMap：这是一个静态属性，是一张存放着17种基本颜色的表，这些颜色都是以十六进制表示的。
+reHex：这是一个静态属性，正则表达式匹配的十六进制颜色格式，如#FF5555、010155、aff。
+reHSLa：这是一个静态属性，正则表达式匹配的HSL或HSLA的颜色格式，如hsl(200, 80%, 10%)、 hsla(300, 50%, 80%, 0.5),、hsla( 300 , 50% , 80% , 0.5 )。
+reRGBa：这是一个静态属性，正则表达式匹配的RGB或RGBA的颜色格式，如rgb(0, 0, 0)、rgba(255, 100, 10, 0.5)、 rgba( 255 , 100 , 10 , 0.5 )、 rgb(1,1,1)、rgba(100%, 60%, 10%, 0.5)。
+
+类函数成员：
+static fabric.Color fromHex(string)：传入一个十六进制格式的颜色值，返回fabric.Color实例。参数是需要实例化的颜色，如FF5555。
+static fabric.Color fromHsl(string)：传入一个HSL格式的颜色值，返回fabric.Color实例。参数是需要实例化的颜色，如hsl(0-260,0%-100%,0%-100%)。
+static fabric.Color fromHsla(string)：传入一个HSLA格式的颜色值，返回fabric.Color实例。
+static fabric.Color fromRgb(string)：传入一个RGB格式的颜色值，返回fabric.Color实例。参数是需要实例化的颜色，如rgb(0-255,0-255,0-255)。
+static fabric.Color fromRgba(string)：传入一个RGBA格式的颜色值，返回fabric.Color实例。
+static fabric.Color fromSource(Array)：传入一个表示颜色的数组，返回fabirc.Color实例。数组格式为[200, 100, 100, 0.5]。
+static Array sourceFromHex(string)：传入以十六进制表示的颜色值，返回以数组表示的颜色值。参数格式是一个十六进制表示的颜色值，如FF5555。
+static Array sourceFormHsl(string)：传入以HSL或HSLA表示的颜色值，返回以数组表示的颜色值。参数格式是HSL或HSLA表示的颜色值，如hsl(0-360,0%-100%,0%-100%) 或hsla(0-360,0%-100%,0%-100%, 0-1)。
+static Array sourceFromRgb(string)：传入以RGB或RBGA表示的颜色值，返回以数组表示的颜色值。参数格式是RGB或RGBA表示的颜色值，如rgb(0-255,0-255,0-255)、rgb(0%-100%,0%-100%,0%-100%)。
+Number getAlpha()：获取颜色实例的Alpha通道值。返回值为0到1之间的数字。
+Array getSource()：获取颜色实例的Source，这里的Source是以数组表示的颜色值，如[200, 200, 100, 1]。
+fabric.Color overlayWith(string | fabric.Color)：用另一种颜色与本颜色进行遮罩混合后，获得新的颜色。参数即是用于指定遮罩混合的另一种颜色。
+fabirc.Color setAlpha(Number)：设置颜色实例的alpha通道值。参数即是要设置的alpha值，取值在0到1之间。
+setSource(Array)：设置颜色实例的Source，这里的Source是以数组表示的颜色值，如[200, 200, 100, 1]。
+fabric.Color toBlackWhite(Number)：将颜色值转为它对应的黑白二值颜色，参数为转换域值。
+fabirc.Color toGrayscale()：将颜色转成与之对应的灰度值。
+string toHex()：获取十六进制表示的颜色值，如FF5555。
+string toHsl()：获取HSL格式表示的颜色值，如hsl(0-360,0%-100%,0%-100%)。
+string toHsla()：获取HSLA格式表示的颜色值，如hsla(0-360,0%-100%,0%-100%,0-1)。
+string toRgb()：获取RGB格式表示的颜色值，如rgb(0-255,0-255,0-255)。
+string toRgba()：获取RGBA格式表示的颜色值，如rgba(0-255,0-255,0-255,0-1)。
+

@@ -1,0 +1,61 @@
+import html5ImgCompress from '../../jslib/image-compression/html5ImgCompress.min'
+图片文件传blob
+convertBase64UrlToBlob(urlData) {
+                var bytes = window.atob(urlData.split(',')[1]);        //去掉url的头，并转换为byte
+                //处理异常,将ascii码小于0的转换为大于0
+                var ab = new ArrayBuffer(bytes.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < bytes.length; i++) {
+                    ia[i] = bytes.charCodeAt(i);
+                }
+                return new Blob([ab], {type: 'image/png'});
+            }
+inputfile读取图片
+picChange(e){
+                var self=this;
+                var files = e.target.files || e.dataTransfer.files;
+                var file=files[0];
+                console.log(file)
+                new html5ImgCompress(file, {
+                    quality:0.5,
+                    before: function (file) {
+                        console.log('单张: 压缩前...');
+                    },
+                    done: function (file, base64) {
+                        self.pic=base64;
+                        var file = self.convertBase64UrlToBlob(base64);
+                        self.file=file;
+                    },
+                    fail: function (file) {
+                        console.log('单张: 压缩失败...');
+                    },
+                    complate: function (file) {
+                        console.log('单张: 压缩完成...');
+                    },
+                    notSupport: function (file) {
+                        alert('浏览器不支持！');
+                    }
+                });
+            }
+上传
+var formData = new FormData();
+formData.append('token', token);
+formData.append('file', self.file);
+self.$http({
+    baseURL: 'http://up-z0.qiniu.com/',
+    url: '',
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    },
+    method: 'POST',
+    data: formData
+}).then(function (res) {
+    console.log(res)
+    if(res.status == 200)
+    {
+        var key=res.data.key;
+    }else {
+    }
+}).catch(function (res) {
+    console.log(res);
+})

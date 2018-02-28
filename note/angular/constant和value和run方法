@@ -1,0 +1,4 @@
+constant("name",value):此方法首先运行，可以用它来声明整个应用范围内的常量，
+并且让他们在所有配置方法里使用。
+value("name",value):只能在controller,factory,service中使用。
+run(){}:执行在config之后，其它方法之前。可以用来加载一下模块等。

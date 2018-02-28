@@ -1,0 +1,58 @@
+Vue.js 的核心是一个允许采用简洁的模板语法来声明式的将数据渲染进 DOM：
+<div id="app">
+  {{ message }}
+</div>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+绑定 DOM 元素属性
+<span v-bind:title="message">
+
+v-on 指令绑定一个调用 Vue 实例方法的事件监听器
+<button v-on:click="reverseMessage">逆转消息</button>
+methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+  
+组件：
+1.全局注册
+要确保在初始化根实例 之前 注册了组件：
+// 注册
+Vue.component('my-component', {
+  template: '<div>A custom component!</div>'
+})
+// 创建根实例
+new Vue({
+  el: '#example'
+})
+//使用
+<div id="example">
+  <my-component></my-component>
+</div>
+2.局部注册
+
+参数传入组件
+<todo-item v-for="item in works" v-bind:todo="item"></todo-item>
+Vue.component('todo-item', {
+        props:['todo'],
+        template: '<li>{{todo}}</li>'
+    });
+
+嵌套在html中的表达式不要访问用户定义的全局变量，只能访问全局变量的一个白名单如Math,Date
+插值：	
+1.{{}}插值成功后数据对象的值发生改变后视图数据也会改变
+通过使用 v-once 指令，你也能执行一次性地插值，当数据改变时，插值处的内容不会更新。
+但请留心这会影响到该节点上所有的数据绑定：
+<span v-once>This will never change: {{ msg }}</span>
+
+2.<div v-html="name"></div>会把字符创以HTML的形势输出，即解析html。
+不要对用户提供的内容以此法插值，防止XSS攻击
+
+怎们理解这类表达式<a v-bind:href="url"></a>
+：这是带参数的指令：指令名称为v-bind，:后为参数，表示参数href的值和url表达式绑定。

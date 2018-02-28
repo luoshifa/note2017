@@ -1,0 +1,31 @@
+使用ng-repeat时可以使用$index属性显示该行数据下标。
+
+ng-if=""如果不符合，整条语句无效。
+
+AngularJS HTML DOM
+ng-disabled 指令直接绑定应用程序数据到HTML的disabled属性。bool
+ng-show 指令隐藏或显示一个 HTML 元素。bool
+ng-hide 指令用于隐藏或显示 HTML 元素。bool
+
+AngularJS 事件
+ng-click 指令定义了 AngularJS 点击事件。
+
+JavaScript 中应避免使用全局函数。因为他们很容易被其他脚本文件覆盖。
+AngularJS 模块让所有函数的作用域在该模块下，避免了该问题。
+
+AngularJS API
+angular.lowercase()	转换字符串为小写
+angular.uppercase()	转换字符串为大写
+angular.isString()	判断给定的对象是否为字符串，如果是返回 true。
+angular.isNumber()	判断给定的对象是否为数字，如果是返回 true。
+
+AngularJS 包含
+在 AngularJS 中，你可以在 HTML 中包含 HTML 文件。
+
+AngularJS 动画
+AngularJS 使用动画需要引入 angular-animate.min.js 库。
+还需在应用中使用模型 ngAnimate：
+<body ng-app="ngAnimate">
+或者：var app = angular.module('myApp', ['ngAnimate']);
+ngAnimate 模型可以添加或移除 class 。
+ngAnimate 模型并不能使 HTML 元素产生动画，

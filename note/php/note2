@@ -1,0 +1,70 @@
+在下列情况下一个变量被认为是 NULL： 
+◦被赋值为 NULL。 
+◦尚未被赋值。 
+◦被 unset()。 
+
+NULL 类型只有一个值，就是不区分大小写的常量 NULL。 
+
+使用 (unset) $var 将一个变量转换为 null 但不会删除该变量或 unset 其值。仅是返回 NULL 值而已。 
+
+一个已实例化的对象的方法被作为数组传递，下标 0 包含该对象，下标 1 包含方法名。 
+
+Local 和 Global 作用域
+函数之外声明的变量拥有 Global 作用域，只能在函数以外进行访问。
+函数内部声明的变量拥有 LOCAL 作用域，只能在函数内部进行访问。
+
+global关键词用于在函数中访问局部变量。
+$glovalue=234;
+function mytest(){
+	#global作用域变量不能在local作用域使用,使用global
+	global $glovalue;
+	$glovalue=789;
+	echo $glovalue."</br>";
+};
+
+PHP 同时在名为 $GLOBALS[index] 的数组中存储了所有的全局变量。下标使用变量名。
+这个数组在函数内也可以访问，并能够用于直接更新全局变量。
+全局：$value=0;
+局部:$GLOBALS[value];
+
+通常，当函数完成/执行后，会删除所有变量。使用static关键词声明除外。
+
+echo - 能够输出一个以上的字符串，有无括号均可使用
+print - 只能输出一个字符串，并始终返回 1，有无括号均可使用
+
+设置 PHP 常量（常量名称前面没有 $ 符号）
+如需设置常量，请使用 define() 函数 - 它使用三个参数：
+首个参数定义常量的名称
+第二个参数定义常量的值
+可选的第三个参数规定常量名是否对大小写敏感。默认是 false(敏感)。
+
+PHP 默认参数值
+下面的例子展示了如何使用默认参数。如果我们调用没有参数的 setHeight() 函数，它的参数会取默认值：
+function setHeight($minheight=50) {
+  echo "The height is : $minheight <br>";
+}
+setHeight(); // 将使用默认值 50
+
+PHP 全局变量 - 超全局变量
+PHP 中的许多预定义变量都是“超全局的”，这意味着它们在一个脚本的全部作用域中都可用。在函数或方法中无需执行 global $variable; 就可以访问它们。
+这些超全局变量是：
+$GLOBALS(引用全局作用域中可用的全部变量
+ $GLOBALS['z']
+)
+$_SERVER($_SERVER 这种超全局变量保存关于报头、路径和脚本位置的信息。
+
+)
+$_REQUEST(用于收集 HTML 表单提交的数据。
+
+)
+$_POST( 广泛用于收集提交 method="post" 的 HTML 表单后的表单数据。
+
+)
+$_GET( 也可用于收集提交 HTML 表单 (method="get") 之后的表单数据。)
+$_FILES()
+$_ENV()
+$_COOKIE()
+$_SESSION()
+
+表单提交使用GET的一个好处：由于变量显示在 URL 中，把页面添加到书签中也更为方便。
+

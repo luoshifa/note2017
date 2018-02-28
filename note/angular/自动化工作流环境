@@ -1,0 +1,35 @@
+一个自动化流工作环境：
+1，自动编译
+2，自动合并
+3，自动刷新
+4，自动部署
+
+为什么要有自动化的流程
+在我们的开发过程中有大量的重复工作
+DRY don't repeat yourself
+开发人员的精力应该放在创造上
+
+node是一个服务端的js运行时
+在node中只能运行ECMAScript，无法使用BOM和DOM。
+
+node有分支
+
+nvm（node version manager）
+因为node版本比较多，开发人员可能依赖很多版本
+通过nvm，可以轻松切换于不同的版本之间
+安装nvm(经验证需要按照在C盘)
+首先保证路径全英文
+在git上下载最新版的nvm选择nvm-noninstall.zip
+把下载到的文件放在选取的文件路径下
+右键一管理员身份运行install.cmd
+在命令行中输入install.cmd所在路径
+弹出一个记事本，在记事本的root中写上之前的路径
+在path上写相同的路径，把nvm改成nodejs，但是自己不要去穿件nodejs这个文件夹
+配置环境变量
+
+npm常用操作
+npm install package_name安装一个包，默认安装最新最稳定版本
+npm install package_name --save安装包并且把包信息添加到npm配置文件，之后只要npm install就能安装所有需要的包
+npm init初始化npm配置文件
+
+bower和npm一样是一个包管理工具

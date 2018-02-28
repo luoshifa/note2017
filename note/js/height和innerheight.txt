@@ -1,0 +1,4 @@
+jquery中：包括盒模型中哪些部分
+height():包括content
+innerHeight():包括content，padding
+outerHeight():包括content，padding，border，margin

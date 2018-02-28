@@ -1,0 +1,30 @@
+gulp的包即包含工具又包含一些编程的API，
+一般来讲工具只要安装到全局，gulp特殊，也需要安装到本地。
+
+npm init
+npm install gulp --save-dev把gulp以项目依赖的方式安装到本地
+创建任务：gulpfile.js（此处代码都是由node执行）
+gulp的机制就是将重复的工作抽象成一个个任务
+其中一个任务负责监听哪个文件发生变化，并对应执行哪个任务
+只要在后台开启负责监听的任务，就可以开始自动化开发了。
+载入gulp模块
+var gulp = require ('gulp');
+//注册一个任务
+gulp.task('say',function () {
+//当gulp执行say任务时会自动执行该代码
+});
+
+//复制一个文件
+//    gulp.src取一个文件
+gulp.src("src/index.html")
+    .pipe(gulp.dest("dist/"));
+	
+常用插件
+编译less：gulp-less
+创建本地服务器：gulp-connect
+合并文件：gulp-concat
+最小化js文件：gulp-uglify
+重命名文件：gulp-rename
+最小化css文件：gulp-minify-css
+压缩html文件：gulp-minify-html
+最小化图像：gulp-imagemin

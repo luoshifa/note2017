@@ -1,0 +1,6 @@
+在package.json的script标签内设置NODE_ENV=development。
+在windows中不支持这种设置方式。
+需要安装cross-env解决这个问题。
+使用方法：
+安装cross-env:npm install cross-env --save-dev
+在NODE_ENV=xxxxxxx前面添加cross-env就可以了。

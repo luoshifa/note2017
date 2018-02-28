@@ -1,0 +1,14 @@
+vue中使用axios的两种方法
+axios不支持Vue.use()的方法是用插件。
+1.每个组件需要都import axios后才可以使用，为了解决这个问题。
+在main.js中import，再：
+import axios from 'axios'
+Vue.prototype.$ajax = axios
+这时在每个组件中可以正常使用axios
+this.$ajax
+
+2.在Vuex的store中封装方法
+import axios from 'axios'
+使用：
+axios.get()
+........

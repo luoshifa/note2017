@@ -1,0 +1,20 @@
+fabric.SprayBrush
+构造函数：new SprayBrush()
+
+类属性成员：
+density(Number)：喷雾的密度（每一喷块的点数），默认值为20。
+dotWidth(Number)：喷点的宽度，默认值为1。
+dotWidthVariance(Number)：喷点的宽度差异，默认值为1。
+optimizeOverlapping(Boolean)：指示这些覆盖喷点是否会被移除（在某些特殊情况下要求喷上去的点需要被移除），默认值为true。
+randomOpacity(Boolean)：指示每一个喷点的透明度是否随机，默认值为false。
+width(Number)：喷头的宽度，默认值为10。
+
+类函数成员：
+void addSprayChunk(Object)：（译者注：该函数功能文档中没有任何说明，根据源码可知，该函数在sprayChunks数组中添加一个喷块，参数为一个包含有x、y成员的对象，通常情况下可以认为是fabric.Point的实例。）
+fabric.SprayBrush initialize(fabric.Canvas)：构造函数。
+void onMouseDown(Object)：鼠标按下时的事件函数。
+void onMouseMove(Object)：鼠标移动时的事件函数。
+void onMouseUp(Object)：鼠标弹起时的事件函数。
+void render()：强制对重渲染画刷。
+
+

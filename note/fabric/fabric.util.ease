@@ -1,0 +1,42 @@
+fabric.util.ease 命名空间
+
+译者注：这一篇全部是供动画函数回调的缓动函数。缓动的含义就是函数名，所以没什么好翻译的，直接摘抄函数列表。
+
+类成员函数：
+static void easeInBack();
+static void easeInBounce();
+static void easeInCirc();
+static void easeInCubic();
+static void easeInElastic();
+static void easeInExpo();
+static void easeInOutBack();
+static void easeInOutBounce();
+static void easeInOutCirc();
+static void easeInOutCubic();
+static void easeInOutElastic();
+static void easeInOutExpo();
+static void easeInOutQuad();
+static void easeInOutQuart();
+static void easeInOutQuint();
+static void easeInOutSine();
+static void easeInQuad();
+static void easeInQuart();
+static void easeInQuint();
+static void easeInSine();
+static void easeOutBack();
+static void easeOutBounce();
+static void easeOutCirc();
+static void easeOutCubic();
+static void easeOutElastic();
+static void easeOutExpo();
+static void easeOutQuad();
+static void easeOutQuart();
+static void easeOutQuint();
+static void easeOutSine();
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+CREATE DATABASE database_name;
+
+DROP DATABASE database_name;
+
+USE database_name;
+
+CREATE TABLE table_name(column_name column_value,.....)
+
+DROP TABLE table_name;
+
+INSERT INTO table_name (field1,field2) VALUES (value1,value2);
+
+SELECT field1,field2 FROM table_name WHERE condition1 and/or condition2;
+
+UPDATE table_name SET field1=new-value1, field2=new-value2 [WHERE Clause];
+
+DELETE FROM table_name [WHERE Clause];
+
+WHERE field1 LIKE "%str";类似包含
+
+ORDER BY field1, [field2...] [ASC [DESC]] 升/降
+
+GROUP BY column_name;根据某一列进行分类可以消除重复，还能统计数量。
+SELECT name, COUNT(*) FROM   employee_tbl GROUP BY name;
+

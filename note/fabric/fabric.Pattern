@@ -1,0 +1,16 @@
+fabric.Pattern
+构造函数：new Pattern()
+
+类属性成员：
+offsetX(Number)：Pattern在Object上相对于左上角的水平偏移量。
+offsetY(Number)：Pattern在Object上相对于左上角的垂直偏移量。
+repeat(string)：默认"repeat"，指定Pattern的重复方式，可选值有"repeat"、"repeat-x"、"repeat-y"、"no-repeat"。
+
+类函数成员：
+fabric.Pattern initialize(Object opt)：构造函数。
+CanvasPattern toLive(CanvasRenderingContext2D)：返回CanvasPattern实例。
+Object toObject()：返回以Object形式表示的Pattern。
+string toSVG(fabric.Object)：返回以SVG形式表示的Pattern。
+
+译者注：这篇文档写得很粗糙啊，毕竟fabric的作者只是一个人，我们要求不能太高了。
+

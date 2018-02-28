@@ -1,0 +1,8 @@
+ls不能显示中文
+找到以下路径的文件
+C:\Program Files\Git\etc\git-completion.bash：
+记事本打开文件在左后添加以下信息
+alias ls='ls --show-control-chars --color=auto'
+
+git status不能显示中文
+git config --global core.quotepath false

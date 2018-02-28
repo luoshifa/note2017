@@ -1,0 +1,10 @@
+ng-model是angular的原生指令
+可以通过require ngModel更深入的去处理数据的双向绑定。
+ng-model的属性
+$parsers:保存了从viewValue向modelValue绑定过程中的处理函数，它们将来会依次执行。
+$formatters:保存的是从modelValue向viewValue绑定过程中的处理函数。
+$setViewValue:当view发生改变时，从view向model绑定，调用$setViewValue把viewValue保存下来。
+$render:当模型发生变化时，应该怎么去更行视图，从model向view绑定，调用ctrl.$render方法，讲viewValue渲染到页面上。
+$setValidity:设置验证结果
+$viewValue:视图的值
+$modelValue:模型里的值。

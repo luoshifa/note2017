@@ -1,0 +1,20 @@
+fabric.BaseBrush
+构造函数：new BaseBrush();
+
+类属性成员：
+color(String)：画刷的颜色，默认值为"rgb(0,0,0)"。
+shadow(fabric.Shadow)：代表该形状的Shadow实例，默认值为null。（编者注：向后兼容提示，在版本1.2.12之后该属性代替了shadowColor、shadowOffsetX、shadowOffsetY、shadowBlur属性。）
+strokeLineCap(String)：画刷线条的终端样式，可选值有"butt"|"round"|"square"，默认值为"round"。
+strokeLineJoin(String)：画刷线条连接处边角的样式，可选值有"bevil"|"round"|"miter"，默认值为"round"。
+width(Number)：画刷的宽度，默认值为1。
+
+类函数成员：
+fabric.Object setShadow(Object | String opt)：为指定的Object设置阴影效果。参数可选，为阴影效果，格式举例" 2px 2px 10px rgba(0,0,0,0.2)"。
+
+
+
+
+
+
+
+

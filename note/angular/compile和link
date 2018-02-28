@@ -1,0 +1,20 @@
+compile中返回一个对象
+return{
+	pre:function preLink(scope,iElement,iAttrs,controller){
+	
+	},
+	post:function postLink(scope,iElement,iAttrs,controller){
+	
+	}
+	
+}
+compile:function(tElement,tAttrs,transclude){
+
+}
+返回了这个对象则指令中的link属性不再发挥作用，link就是compile中返回对象的post。
+preLink表示在编译阶段之后，下一个子元素指令连接之前。
+postLink:表示会在所有子元素指令都连接之后才运行。
+link函数负责在模型和视图之间进行动态关联，对于每个指令的实例，link函数都会执行一次。
+compile:想在DOM渲染前对它进行变形，并且不需要scope参数，
+想在所有相同directive里共享某些方法，这时定义在compile里，性能会比较好。
+link：对特定的元素注册事件，需要用到scope参数来实现DOM元素的一些行为。

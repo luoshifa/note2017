@@ -1,0 +1,14 @@
+结构
+<canvas id="cOne" width="800" height="500"></canvas>
+<script src="node_modules/paper/dist/paper-full.js"></script>
+<script type="text/paperscript" canvas="cOne" src="js/test8.js"></script>
+
+全局对象paper代表当前paperScope
+
+鼠标事件不需要绑定在某元素上，在当前project中会自动执行
+function onMouseMove(event) {
+    path.firstSegment.point=event.point;
+}
+就可以了
+
+绘制图片：Raster

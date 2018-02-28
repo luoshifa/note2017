@@ -1,0 +1,270 @@
+fabric.StaticCanvas
+构造函数：new StaticCanvas()
+
+可触发的事件：before:render、after:render、canvas:cleared、object:added、object:removed
+
+类中包含着：fabric.Collection、fabric.Observable
+
+类属性成员：
+EMPTY_JSON(string)：这是一个静态属性，不可更改。默认值为："{\"objects\": [], \"background\": \"white\"}"
+allowTouchScrolling(boolean)：默认false，指明使用触摸屏或者在canvas上拖动对象时，屏幕是否跟着滚动
+backgroundColor(string|fabric.Pattern)：Canvas实例的背景色，需要通过fabric.StaticCanvas的setBackgroundColor()函数来设置
+backgroundImage(fabric.Image)：默认null，Canvas实例的背景图片。需要通过fabric.StaticCanvas的setBackgroundImage()函数来设置。如果要设置图片的透明度和长宽，需要通过fabric.Image的opacity属性和width、height属性来设置。
+clipTo(function)：这是一个funcion类型的属性成员，一般用于回调。作用是将整个Canvas进行裁剪并传递给第一个参数，以下是文档中附带的例子：
+canvas.clipTo = function(ctx) {
+  ctx.arc(0, 0, 60, 0, Math.PI*2, true);
+};
+// or passing to fabric.Element options
+new fabric.Element('myCanvas', {
+  clipTo: function(ctx) {
+    ctx.arc(0, 0, 60, 0, Math.PI*2, true);
+  }
+});
+controlsAboveOverlay(boolean)：默认false，指明对象的控制器（borders/controls）是否渲染在前景图片之上
+FX_DURATION(number)：默认500，单位毫秒（ms）。动画的持续时间，给fx*的方法使用。
+imageSmoothingEnabled(boolean)：默认true。指明Canvas是否使用图片的平滑特性。
+includeDefaultValues(boolean)：默认true，指明Canvas序列化时是否包括默认值。
+overlayColor(string|fabric.Pattern)：Canvas的前景色，可以通过fabric.StaticCanvas的setOverlayColor()函数进行设置。
+overlayImage(fabric.Image)：默认null，Canvas的前景图。可以通过fabric.StaticCanvas的setOverlayImage()函数进行设置。如果要设置位置，可通过fabric.Image的left和top属性进行设置。
+preserveObjectStacking(boolean)：默认false。指明对象被选定的时候，是否留在当前的栈位置上。如果设置为false，对象会被移至最顶端，并被渲染为选择组的一部分。
+renderOnAddRemove(boolean)：默认为true。指明当调用fabric.Collection.add、fabric.Collection.insertAt、fabric.Collection.remove函数时是否重新渲染Canvas。当大量的插入或移除对象时，将这个属性设置为false，可以获得高的效率。
+stateful(boolean)：默认true。指明对象的状态是否会被保存。
+svgViewportTransformation(boolean)：默认true。当设置为true时，getSvgTransform()函数将会StaticCanvas.viewprotTransform赋值给SVG transform；当设置为true时，被拉伸的Canvas将会把拉伸效果应用到SVG的输出。
+viewportTransform(Array)：应用于视口的拉伸（译者注：这个属性完全不知道在干啥）
+
+类函数成员：
+boolean | null supports(string)：这是一个类static函数，用于检测Canvas是否支持某些函数。（可以是检查HTMLCanvasElement本身的函数，或者检测其渲杂的context）。参数则是需要检测的函数名，可以是以下任一取值："getImageData", "toDataURL", "toDataURLWithQuality" or "setLineDash"。返回true表示支持此函数，至少说明该函数存在。返回null表示canvas元素或与其相关的context无法被初始化。
+fabric.Canvas absolutePan(fabric.Point)：将画布视图的原点移至point指定的点。
+fabric.Canvas beingForward(fabric.Object,boolean)：将指定对象在栈中称前一位。第二个参数如果设置为true，将会把指定对象在Canvas上移至到覆盖它的对象之上。
+fabric.Canvas bringToFront(fabric.Object)：将指定的对象移至栈顶。
+fabric.Canvas calcOffset()：计算Canvas相对于document的偏移量。这个函数被附加给Window的resize事件的处理函数。
+fabric.Canvas centerObject(fabric.Object)：在水平和垂直方向上居中指定的对象。在居中之后，你可能属要调用对象上的setCoords()函数来更新controls的区域。
+fabric.Canvas centerObjectH(fabric.Object)：在水平方向上居中指定的对象。在居中之后，你可能属要调用对象上的setCoords()函数来更新controls的区域。
+fabric.Canvas centerObjectV(fabric.Object)：在垂直方向上居中指定的对象。在居中之后，你可能属要调用对象上的setCoords()函数来更新controls的区域。
+fabric.Canvas clear()：清空Canvas上的所有实例，包括背景、对象等。
+fabric.Canvas clearContext(CanvasRenderingContext2D)：清除指定的Canvas的元素。
+clone(callback opt, Array opt)：复制Canvas的实例。callback是一个回调函数，它的第一个参数用于接收被复制的对象实例；第二个参数放置着包含在被复制的Canvas以及它的子元素中的属性。
+cloneWithoutData(callback opt)：复制Canvas的实例，但不复制其包含的数据。这个函数是复制必要的维度、裁剪属性等等，但它们的数据会被置空（你可以自己计算出这些属性的值）。callback是一个回调函数，它的第一个参数用于接收被复制的对象的实例。
+fabric.Canvas dispose()：清楚Canvas上的所有元素，并移除所有的侦听事件。
+fabric.Canvas fxCenterObjectH(fabric.Object, callback object opt)：让指定的Object水平居中，带有动画效果。第二个参数是一个回调的Object，可以有两个属性，onComplete和onChange两个属性（都是Function）。
+fabric.Canvas fxCenterObjectV(fabric.Object, callback object opt)：让指定的Object垂直居中，带有动画效果。第二个参数是一个回调的Object，可以有两个属性，onComplete和onChange两个属性（都是Function）。
+fabric.Canvas fxRemove(fabirc.Object, callback object opt)：和fabric.Canvas.remove()函数效果一样，只不过带了动画效果。第二个参数是一个回调的Object，可以有两个属性，onComplete和onChange两个属性（都是Function）。
+fabric.Canvas fxStraightenObject(fabric.Object)：和fabric.Canvas.prototype.straightenObject()效果一样，只不过带了动画效果。
+fabric.Group getActiveGroup()：获取当前处于活动状态的Group。
+fabric.Object getActiveObject()：获取当前处于活动状态的Object。
+Object getCenter()：返回Canvas的中点坐标。返回值中包含了left和top两个属性。
+CanvasRenderingContext2D getContext()：返回Canvas的Context。
+HTMLCanvasElement getElement()：返回与Canvas相关联的<canvas>HTML元素。
+Number getHeight()：获取Canvas的高度，以像素为单位。
+Number getWidth()：获取Canvas的宽度，以像素为单位。
+Number getZoom()：返回Canvas的缩放级别。
+Object initialize(HTMLElement | String, Object opt)：构造函数。第一个参数指定需要实例代的HTML元素；第二个参数则指定了需要预先设置的一些属性（可选）。
+fabric.Canvas loadFromDatalessJSON(String | Object, Function, Function opt)：从无数据的json中还原出Canvas。这个无数据的json必须符合fabric.Canvas.toDatalessJSON()。这个函数有三个参数，第一个参数是需要还原的json数据；第二个参数是一个回调函数，这个回调函数在解析json，相关的Object（如fabric.Image）初始化时被调用；第三个参数也是一个回调函数，可选，在每一个元素创建之后被调用。编者注：这个函数在1.2.2版本后已被废弃。
+fabric.Canvas loadFromJSON(String | Object, Function, Function opt)：从指定的json数据中还原出Canvas。这个json数据必须符合fabric.Canvas.toJSON()。这个函数有三个参数，第一个参数是需要还原的json数据；第二个参数是一个回调函数，这个回调函数在解析json，相关的Object（如fabric.Image）初始化时被调用；第三个参数也是一个回调函数，可选，在每一个元素创建之后被调用。文档中的示例：
+⑴
+canvas.loadFromJSON(json, canvas.renderAll.bind(canvas));
+⑵
+canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), function(o, object) {
+  // `o` = json object
+  // `object` = fabric.Object instance
+  // ... do some stuff ...
+});
+fabric.Canvas moveTo(fabric.Object, Number)：将指定的Object移动到栈的指定位置。
+onBeforeScaleRotate()：这是一个回调函数，在Object缩放或旋转时被调用。
+fabric.Canvas relativePan(fabric.Point)：整个视口，根据给定的点形成向量进行移动。译者注：没看懂这里整个视口是怎么移动的。
+fabric.Canvas renderAll(boolean)：将上层的Canvas以及从属的Canvas全部进行渲染。如果需要所有的顶层Images重新进行渲染，则将参数设置为true。
+fabric.Canvas renderTop()：只渲染顶层的Canvas，同时也会渲染选中的Group。
+fabric.Canvas sendBackwards(fabric.Object, boolean opt)：将指定的Object在栈中向下移一位。如果第二个参数设置为true，则会在Canvas上将指定的Object放置在下一个与之有交集的Object的后面。
+fabric.Canvas sendToBack(fabric.Object)：将指定的Object置于栈中的最底部。
+fabric.Canvas setBackgroundColor(string | fabric.Pattern, Function)：设置Canvas的背景色。第二个参数是个回调函数，在背景色设置之后被调用。文档中示例：
+⑴
+canvas.setBackgroundColor('rgba(255, 73, 64, 0.6)', canvas.renderAll.bind(canvas));
+⑵
+canvas.setBackgroundColor({
+  source: 'http://fabricjs.com/assets/escheresque_ste.png'
+}, canvas.renderAll.bind(canvas));
+⑶
+canvas.setBackgroundColor({
+  source: 'http://fabricjs.com/assets/escheresque_ste.png',
+  repeat: 'repeat',
+  offsetX: 200,
+  offsetY: 100
+}, canvas.renderAll.bind(canvas));
+fabric.Canvas setBackgroundImage(fabric.Image | string, Function, Object opt)：设置Canvas的背景图片。第二个参数是回调函数，当图片被成功加载被设置成背景后被调用；第三个是可选参数，将设置给背景图的一些属性。文档中示例：
+⑴
+canvas.setBackgroundImage('http://fabricjs.com/assets/honey_im_subtle.png', canvas.renderAll.bind(canvas), {
+  // Needed to position backgroundImage at 0/0
+  originX: 'left',
+  originY: 'top'
+});
+⑵
+canvas.setBackgroundImage('http://fabricjs.com/assets/honey_im_subtle.png', canvas.renderAll.bind(canvas), {
+  opacity: 0.5,
+  angle: 45,
+  left: 400,
+  top: 400,
+  originX: 'left',
+  originY: 'top'
+});
+⑶
+fabric.Image.fromURL('http://fabricjs.com/assets/honey_im_subtle.png', function(img) {
+   img.set({width: canvas.width, height: canvas.height, originX: 'left', originY: 'top'});
+   canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
+});
+⑷
+canvas.setBackgroundImage('http://fabricjs.com/assets/honey_im_subtle.png', canvas.renderAll.bind(canvas), {
+  width: canvas.width,
+  height: canvas.height,
+  // Needed to position backgroundImage at 0/0
+  originX: 'left',
+  originY: 'top'
+});
+⑸
+canvas.setBackgroundImage('http://fabricjs.com/assets/honey_im_subtle.png', canvas.renderAll.bind(canvas), {
+  opacity: 0.5,
+  angle: 45,
+  left: 400,
+  top: 400,
+  originX: 'left',
+  originY: 'top',
+  crossOrigin: 'anonymous'
+});
+fabric.Canvas setDimensions(Object, Object opt)：设置Canvas的长宽。第一个参数有两个属性width和height，分别表示要设置的长宽，类型为Number或string；第二个参数有两个属性backstoreOnly和cssOnly，这两个均为boolean类型，当cssOnly为true时，width和height的设置需要带上单位（px/%/em等）。当backstroeOnly为true时，则将设置的长宽以backstore的模式进行设置。（译者注：不太清楚这里的backstore什么意思，去查了字典也没查到这个词）
+fabric.Canvas setHeight(Number | string, Object)：设置Canvas实例的高度。第一个参数是要设置的目标高度。第二个参数有两个属性backstoreOnly和cssOnly，这两个均为boolean类型，当cssOnly为true时， height的设置需要带上单位（px/%/em等）。当backstroeOnly为true时，则将设置的长宽以backstore的模式进行设置。（译者注：不太清楚这里的backstore什么意思，去查了字典也没查到这个词）
+fabric.Canvas setOverlayColor(string | fabric.Pattern, Function)：设置Canvas的前景色。第一个参数是用来设置的颜色；第二个参数是个回调函数，当前景色设置后被调用。文档中示例：
+⑴
+canvas.setOverlayColor('rgba(255, 73, 64, 0.6)', canvas.renderAll.bind(canvas));
+⑵
+canvas.setOverlayColor({
+  source: 'http://fabricjs.com/assets/escheresque_ste.png'
+}, canvas.renderAll.bind(canvas));
+⑶
+canvas.setOverlayColor({
+  source: 'http://fabricjs.com/assets/escheresque_ste.png',
+  repeat: 'repeat',
+  offsetX: 200,
+  offsetY: 100
+}, canvas.renderAll.bind(canvas));
+fabric.Canvas setOverlayImage(fabric.Image | string, Function, Object opt)：设置Canvas的前景图。第一个参数是要设置的前景图；第二个参数是个回调函娄，在成功加载图片并设置为前景图中被调用；第三个参数是个可选参数，是要设置给前景图的选项。文档中示例：
+⑴
+canvas.setOverlayImage('http://fabricjs.com/assets/jail_cell_bars.png', canvas.renderAll.bind(canvas), {
+  // Needed to position overlayImage at 0/0
+  originX: 'left',
+  originY: 'top'
+});
+⑵
+canvas.setOverlayImage('http://fabricjs.com/assets/jail_cell_bars.png', canvas.renderAll.bind(canvas), {
+  opacity: 0.5,
+  angle: 45,
+  left: 400,
+  top: 400,
+  originX: 'left',
+  originY: 'top'
+});
+⑶
+fabric.Image.fromURL('http://fabricjs.com/assets/jail_cell_bars.png', function(img) {
+   img.set({width: canvas.width, height: canvas.height, originX: 'left', originY: 'top'});
+   canvas.setOverlayImage(img, canvas.renderAll.bind(canvas));
+});
+⑷
+canvas.setOverlayImage('http://fabricjs.com/assets/jail_cell_bars.png', canvas.renderAll.bind(canvas), {
+  width: canvas.width,
+  height: canvas.height,
+  // Needed to position overlayImage at 0/0
+  originX: 'left',
+  originY: 'top'
+});
+⑸
+canvas.setOverlayImage('http://fabricjs.com/assets/jail_cell_bars.png', canvas.renderAll.bind(canvas), {
+  opacity: 0.5,
+  angle: 45,
+  left: 400,
+  top: 400,
+  originX: 'left',
+  originY: 'top',
+  crossOrigin: 'anonymous'
+});
+fabric.Canvas setViewportTransform(Array)：设置Canvas的变换。参数则属于context.transform的一种表现形式。
+fabric.Canvas setWidth(Number | string, Object)：设置Canvas实例的宽度。第一个参数是要设置的目标宽度。第二个参数有两个属性backstoreOnly和cssOnly，这两个均为boolean类型，当cssOnly为true时，width的设置需要带上单位（px/%/em等）。当backstroeOnly为true时，则将设置的长宽以backstore的模式进行设置。（译者注：不太清楚这里的backstore什么意思，去查了字典也没查到这个词）
+fabric.Canvas setZoom(Number)：设置Canvas的缩放程度。当参数小于1时，Canvas则缩小。
+fabric.Canvas straightenObject(fabric.Object)：将Object拉直（译者注：不太清楚这里拉直什么意思）。
+string toDatalessJSON(Array opt)：返回代表Canvas的无数据JSON。参数是一个数组，指定了需要额外包含在输出中的属性。
+Object toDatalessObject(Array opt)：返回代表Canvas的无数据Object。参数是一个数组，指定了需要额外包含在输出中的属性。
+string toDataURL(Object opt)：将Canvas转为数据串形式的URL。要注意，当multiplier被使用的时候，裁剪区域会被适当缩放。Object是一个可选值，附带着以下属性：
+format  string，可选，默认"png"，指定输出的图像格式，"jpeg"或"png"
+quality  Number，可选，默认1，取值范围0到1，只对于"jpeg"格式有效
+multiplier  Number，可选，默认1，缩放因子
+left  Number，可选，裁剪的左偏移量
+top  Number，可选，裁剪的顶部偏移量
+width  Number，可选，裁剪宽度
+height  Number，可选，裁剪高度
+文档中示例：
+⑴
+var dataURL = canvas.toDataURL({
+  format: 'jpeg',
+  quality: 0.8
+});
+⑵
+var dataURL = canvas.toDataURL({
+  format: 'png',
+  left: 100,
+  top: 100,
+  width: 200,
+  height: 200
+});
+⑶
+var dataURL = canvas.toDataURL({
+  format: 'png',
+  multiplier: 2
+});
+string toDataURLWithMultiplier(string, Number, Number)：将Canavs转成数据串格式的URL，通过缩放因子可以对图片进行缩放。第一个参数是输入的格式，jpeg或png；第二个参数是缩放因子；第三个参数则是输出的质量，取值为0到1之间。本函数已废弃。
+string toJSON(Array)：将Canvas序列化为JSON数据。参数是一个数组，包含你想要额外添加到输出数据中的属性。文档中示例：
+⑴
+var json = canvas.toJSON();
+⑵
+var json = canvas.toJSON(['lockMovementX', 'lockMovementY', 'lockRotation', 'lockScalingX', 'lockScalingY', 'lockUniScaling']);
+⑶
+canvas.includeDefaultValues = false;
+var json = canvas.toJSON();
+Object toObject(Array)：将Canvas序列化为Object数据。参数是一个数组，包含你想要额外添加到输出数据中的属性。
+string toString()：返回一个代表Canvas实例的字符串。
+string toSVG(Object opt, Function opt)：返回一个代表Canvas的SVG数据。参数比较复杂，如下表所示：
+参数	可选	描述
+参数一Object类型	是	SVG输出的可选属性
+属性说明
+属性名	类型	可选	默认值	描述
+suppressPreamble	boolean	是	false	如果为true，则xml标记不会被包含
+viewBox	Object	是		SVG视图盒模型的属性
+属性说明
+属性名	类型	可选	描述
+x	Number	是	盒模型的x坐标
+y	Number	是	盒模型的y坐标
+width	Number	是	盒模型的宽度
+height	Number	是	盒模型的高度
+
+encoding	string	是	UTF-8	SVG输出的编码
+
+参数二回调函数Function类型	是	这是一个回调函数，在每个Object转换成SVG描述符时被调用
+文档中示例：
+⑴
+var svg = canvas.toSVG();
+⑵
+var svg = canvas.toSVG({suppressPreamble: true});
+⑶
+var svg = canvas.toSVG({
+  viewBox: {
+    x: 100,
+    y: 100,
+    width: 200,
+    height: 300
+  }
+});
+⑷
+var svg = canvas.toSVG({encoding: 'ISO-8859-1'});
+⑸
+var svg = canvas.toSVG(null, function(svg) {
+  return svg.replace('stroke-dasharray: ; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; ', '');
+});
+fabric.Canvas zoomToPoint(fabric.Point, Number)：设置Canvas以指定的点为中心进行缩放。第一个参数即为指定的中心点；第二个参数为缩放级别，小于1即为缩小。
+
+

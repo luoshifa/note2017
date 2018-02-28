@@ -1,0 +1,10 @@
+ng-change只是在用户操作时模型中数据发生变化之后的处理
+但是如果该数据绑定在多个位置或从服务器端获取就监测不到
+变化，
+因此，$watch可以监测一个表达式的变化，
+		$scope.$watch("watchEle.ele1",getMoney);
+        function getMoney() {
+            $scope.money=$scope.watchEle.ele1*10;
+        }
+监测的表达式位于引号中，它是一个字符串，会被angular当做表达式处理。
+$watch队列：在UI中每绑定一个控制器中的数据，会产生一个$watch;

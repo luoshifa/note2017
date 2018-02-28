@@ -1,0 +1,30 @@
+一。内联样式：在HTML标签用style属性设置。如：
+
+ 1 <p style="color:#f90;">这是内联样式</p> 
+
+二。嵌入/内部样式：通过<head>标签内通过<style>标签设置。如：
+ <style type="text/css">
+     /*这是嵌入样式*/
+      .stuff{color:#f90}
+ </style>
+三。外部样式：通过<link>标签设置。如：
+<link rel="stylesheet" href="path/style.css" type="text/css">
+
+
+style，currentStyle，getComputedStyle
+style只能获取元素的内联样式，内部样式和
+外部样式使用style是获取不到的。
+
+currentStyle，据说它有个强大的后盾MS，
+也就是说这家伙只能在IE浏览器里能用。
+其他的不好使。它的使用方法是obj.currentStyle["attr']
+或者obj.currentStyle.attr。
+
+getComputedStyle，它的用法是
+window.getComputedStyle(ob, pseudoElt)["attr']
+或window.getComputedStyle(ob, pseudoElt).attr。
+其中，pseudoElt表示如 :after,:before之类的伪类，
+如果不用伪类的话设置为null即可。
+
+注意：getComputedStyle和currentStyle只能获取属性值，
+无法设置属性。如果想设置属性值，可是使用ob.style.attr.

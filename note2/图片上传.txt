@@ -1,0 +1,119 @@
+页面：
+<input type="file" @change="picChange">
+设置opacity为0，绝对定位到上传图片元素位置上，铺满元素。
+picChange(e){
+                var self=this;
+                var files = e.target.files || e.dataTransfer.files;
+                if(!window.FileReader)
+                {
+                    console.log("浏览器不支持filereader");
+                    return
+                }else {
+                    var reader = new window.FileReader();
+                    reader.onload = function (e) {
+                        var size=e.total;
+                        var pic=e.target.result;
+                        var start=pic.indexOf("base64")+7;
+                        var newPic=pic.slice(start);
+                    }
+                    var len=files.length;
+                    for(var i=0;i<len;i++)
+                    {
+                        var fileName=files[i].name;
+                        var point=fileName.indexOf('.');
+                        var fileType=fileName.substr(point+1).toLowerCase();
+                        if(fileType=='png' || fileType=='jpg' || fileType=='gif' || fileType=='jpeg')
+                        {
+                            reader.readAsDataURL(files[i]);
+                        }
+                    }
+                }
+            }
+picChange中获取到图片和读取了图片的相关信息（在图片上传到云存储的时候使用）;
+uploadCase(){
+                var self=this;
+                var len=this.case_list.length;
+                if(len>0)
+                {
+                    this.$uihelpers.showLoading('上传中');
+                    for(var i=0;i<len;i++)
+                    {
+                        if(this.case_list[i].size>300*1024)
+                        {
+                            var img=new Image();
+                            img.src=this.case_list[i].pic;
+                            var width=img.naturalWidth;
+                            var height=img.naturalHeight;
+                            var canvas=document.createElement('canvas');
+                            canvas.width=width/2;
+                            canvas.height=height/2;
+                            var cxt=canvas.getContext('2d');
+                            cxt.drawImage(img,0,0,width/2,height/2);
+                            var imgUrl= canvas.toDataURL("image/jpeg", 0.3);
+                            this.case_list[i].pic=imgUrl;
+                            var start=imgUrl.indexOf("base64")+7;
+                            imgUrl=imgUrl.slice(start);
+                            var sizeUrl=imgUrl;
+                            sizeUrl=sizeUrl.replace(/=/g,"");
+                            this.case_list[i].size=parseInt(sizeUrl.length-(sizeUrl.length/8)*2);
+                            this.case_list[i].newPic=imgUrl;
+                        }
+                    }
+                    var currentCase=0;
+                    function caseAjax() {
+                      self.$http({
+                          url:'/cut/public/index.php/common/index/getToken',
+                          method:'post',
+                          headers:{
+                              token:utils.getToken()
+                          },
+                          data:"type=designer"
+                      }).then(function (res) {
+                          if(res.data.state=='00001')
+                          {
+                              var token=res.data.result.token;
+                              var size=self.case_list[currentCase].size;
+                              var url="http://upload.qiniu.com/putb64/"+size;
+                              var xhr = new XMLHttpRequest();
+                              xhr.onreadystatechange=function(){
+                                  if (xhr.readyState==4){
+                                      var res=JSON.parse(xhr.response);
+                                      if(res.key)
+                                      {
+                                          var key=res.key;
+                                          console.log(key)
+                                          self.img_src.push(key);
+                                          if(currentCase<len-1)
+                                          {
+                                              currentCase++;
+                                              caseAjax();
+                                          }else {
+                                              self.$uihelpers.hideLoading();
+                                              self.uploadEnd();
+                                          }
+                                      }else {
+                                          self.$uihelpers.toast("上传失败");
+                                      }
+                                  }
+                              }
+                              xhr.open("POST", url, true);
+                              xhr.setRequestHeader("Content-Type", "application/octet-stream");
+                              xhr.setRequestHeader("Authorization", "UpToken "+token);
+                              xhr.send(self.case_list[currentCase].newPic);
+                          }else {
+                              self.$uihelpers.hideLoading();
+                              self.$uihelpers.toast('上传失败');
+                          }
+                      }).catch(function (res) {
+                          self.$uihelpers.hideLoading();
+                          console.log(res);
+                          self.$uihelpers.toast('上传失败');
+                      })
+                    }
+                    caseAjax();
+                }else {
+                    this.$uihelpers.toast("无可上传图片");
+                }
+            }
+以上是图片上传到七牛的函数，在函数中一次上传了多张图片，但是由于ajax是异步的，所以
+使用for循环上传只能上传一张。以上函数的解决方案是通过递归解决。

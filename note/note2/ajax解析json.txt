@@ -1,0 +1,30 @@
+后台返回给前端的数据可能是对象，也可能是一个字符串，如果是字符串需要解析后才才能使用。
+eval();  //此方法不推荐
+JSON.parse();  //推荐方法
+一、两种方法的区别
+我们先初始化一个json格式的对象：
+　　var jsonDate = '{ "name":"周星驰","age":23 }'
+　　var jsonObj = eval( '(' + jsonDate + ')' );  // eval();方法
+　　var jsonObj = JSON.parse( jsonDate );  // JSON.parse(); 方法
+然后在控制台调用：
+　　console.log( jsonObj.name );  // 两种方法都可以正确输入 周星驰
+那么问题来了 两种方法有什么区别呢？（下面我们稍微把代码改动一下，蓝色字体为修改部分）
+　　var jsonDate = '{ "name":alert("hello"),"age":23 }'
+　　var jsonObj = eval( '(' + jsonDate + ')' );  // eval();方法
+　　console.log( jsonObj.age );  //会先执行“alert”输出“hello”  然后才输出 23
+换“JSON.parse();”方法：
+　　var jsonDate = '{ "name":alert("hello"),"age":23 }'
+　　var jsonObj = JSON.parse( jsonDate );  // JSON.parse(); 方法
+　　cosole.log( jsonobj.age )  // 报错  这个错误告诉我们这个字符串是不合法的
+小结：“eval();”方法解析的时候不会去判断字符串是否合法，而且json对象中的js方法也会被执行，
+这是非常危险的；而“JSON.parse();”方法的优点就不用多说了，推荐此方法。
+二、扩展问题
+　　var jsonDate = '{ "name":"周星驰","age":23 }'
+大家可以看到在上面测试时一直用包在花括号外面的引号标注了起来，
+这对引号是很关键却又是常常被忽略的，因为 “eval();” 和 “JSON.parser();” 
+这两个方法的参数只接受字符串，也就是说只能解析字符串!!
+那我不经会有一个思考，我们在初始化的时候若不加引号对，那么它本身就是对象，
+js可以直接获取对象本身的属性和方法；为什么还要加引号将它变成字符串之后再用 “eval();” 
+或者 “JSON.parse();” 解析，这样做不是既不环保又没有效率吗？
+原因很简单：前端提供给后台的只能是字符串数据格式，后台返回给前台的就看返回的是什么数据格式，
+是字符串就必须解析之后再用。

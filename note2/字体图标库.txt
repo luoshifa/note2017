@@ -1,0 +1,7 @@
+https://ICoMoon.io
+进入字体商城
+选择选择需要的字体
+点击generate font生成字体
+下载字体前设置引入字体的方式，比如类名。设置：preference
+下载
+解压后style.css为使用方法。

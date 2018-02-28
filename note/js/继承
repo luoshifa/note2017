@@ -1,0 +1,24 @@
+让一个类继承另一个类，实现起来很方便。只要在后者的creatFn()方法中，调用前者的creatFn()方法即可。 
+先定义一个Animal类。
+
+　　var Animal = {
+　　　　creatFn: function(){
+　　　　　　var animal = {};
+　　　　　　animal.eat= function(){ alert("吃饭饭"); };
+　　　　　　return animal;
+　　　　}
+　　};
+然后，在Dog的creatFn()方法中，调用Animal的creatFn()方法。
+
+　　var Dog= {
+　　　　creatFn: function(){
+　　　　　　var dog= Animal.creatFn();
+　　　　　　dog.name = "狗狗";
+　　　　　　dog.makeSound = function(){ alert("汪汪汪"); };
+　　　　　　return dog;
+　　　　}
+　　};
+这样得到的Dog实例，就会同时继承Dog类和Animal类。
+
+　　var dog1= Dog.creatFn();
+　　dog1.eat(); // 吃饭饭

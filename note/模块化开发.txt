@@ -1,0 +1,4 @@
+commonjs
+requirejs
+AMD
+CMD

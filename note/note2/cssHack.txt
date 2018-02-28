@@ -1,0 +1,7 @@
+不同的浏览器使用不同的样式
+\9 IE10及IE10以下版本
+background-clor:red\9;
+* IE7及IE7以下版本
+*background-clor:red;
+_ IE6及IE6以下版本
+_background-clor:red;

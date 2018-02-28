@@ -1,0 +1,26 @@
+方法一：判断有没有数组的性质如push()方法，但是由于自己也可以
+定义push()方法，所以并不准确。
+
+方法二：obj instanceof Array在某些IE版本中不正确。
+
+方法三：isArray();保证兼容性最好的写法是：
+function isArray(arr){
+	if(typeof Array.isArray==="undefined"){
+		Array.isArray = function(arg){
+			return Object.prototype.toString.call(arg)==="[object Array]";
+		}
+	}
+	
+	return Array.isArray(arr);
+}
+
+
+
+ECMA内容：
+Object.prototype.toString ( )  
+When the toString method is called, the following steps are taken:    
+If the this value is undefined, return "[object Undefined]".  
+If the this value is null, return "[object Null]".  
+Let O be the result of calling ToObject passing the this value as the argument.  
+Let class be the value of the [[Class]] internal property of O.  
+Return the String value that is the result of concatenating the three Strings "[object ", class, and "]". 

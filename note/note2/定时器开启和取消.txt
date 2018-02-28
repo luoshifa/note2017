@@ -1,0 +1,13 @@
+把定时器内的函数封装，开启，再开启都调用就好
+function timer={
+}
+
+var lsfTimer=setInterval(function(){
+	timer();
+})
+
+clearInterval(lsfTimer);
+再开启
+lsfTimer=setInterval(function(){
+	timer;
+}}

@@ -1,0 +1,28 @@
+viewport:
+先把页面渲染在一个viewport上，再通过缩放展现在屏幕上。
+先保证排版的正确。
+手机默认做了两件事情：
+1，页面渲染在一个980px（ios）的viewport上。
+2，缩放。
+布局viewport：(视窗视口，网页的宽度是多少)
+视口viewport：(可见视口)移动设备的窗口
+要想在设备中容下整个网页的内容不出现滚动条，就需要把网页等比例缩小，
+所以看到的视窗视口就被缩放了。
+常见布局viewport数值：
+iPhone：980
+iPad：1024
+Android：980
+WinPhone：1024
+为什么不使用默认的980px的viewport
+1，宽度不可控制，不同设备的默认值可能不同。
+2，页面缩小显示，交互不友好。
+3，链接不可点。
+4，缩放后出现滚动。
+meta标签
+<meta name="viewport" content="name=value,name=value">
+width:设置布局viewport的特定值（“device-width”）
+initial-scale：设置页面的初始缩放。为1的话布局和视口viewport相等。
+minimum-scale：最少缩放。
+maximum-scale：最大缩放。
+user-scalable：用户能否缩放。
+移动设备可用布局宽度 = 浏览器的视口宽度（设备屏幕大小）/ 缩放值；

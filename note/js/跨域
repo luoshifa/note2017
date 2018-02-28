@@ -1,0 +1,55 @@
+在一台电脑中模拟不同域的方法：localhost和127.0.0.1不属于同一域。
+同域是指：主域名，子域名，端口号，都相同。
+由于同源策略，服务器部署在不同地区时需要使用到跨域。
+解决跨域的方法：
+1，使用nginx反代理解决跨域问题，不需要后台配合且是更全面的解决方法。
+nginx欺骗浏览器让它认为是同源的，然后重写url欺骗真是的服务器，让它以为来自用户浏览器。
+<script>
+    var url="http://127.0.0.1:8080/myprojects/proOne/kuayu/php/serve4.php";//已经不起作用
+    var proxyurl="php/serve4.php";
+    $.ajax({
+        type:"get",
+        url:proxyurl,
+        success:function (msg) {
+            console.log(msg)
+        }
+    })
+</script>
+2，script标签不收同源策略的限制（需要后台开发人员配合）
+本域js：
+<script>
+    function get_user(data) {
+        console.log(data);
+    }
+</script>
+<script src="http://127.0.0.1:8080/myprojects/proOne/kuayu/php/serve3.php?callback=get_user"></script>
+访问域php：
+<?php 
+	$callback=$_GET["callback"];//获取回调函数名
+	echo $callback.'({"name":"luoshifa"})';
+?>
+script访问的文件不仅可以是PHP还可以是其他。访问php后调用本域的回调函数。
+3，jsonp（需要后台开发人员配合）
+本域js：
+$.ajax({
+        type:"get",
+        url:"http://127.0.0.1:8080/myprojects/proOne/kuayu/php/serve.php",
+        dataType:"jsonp",
+        jsonp:"callback",
+        success:function (data) {
+            console.log(data)
+        }
+    })
+访问域php：
+<?php 
+	
+	$jsonp=$_GET["callback"];
+	echo $jsonp.'({"name":"luoshifa"})'
+
+?>
+4，XHR2
+在PHP中添加两行代码
+header("Access-Control-Allow-Origin:*");
+header("Access-Control-Allow-Methods:POST,GET");
+*指的是任意域名，也可以指定域名。
+其他和同源时代码一样，不需要修改。代码修改量比jsonp少。

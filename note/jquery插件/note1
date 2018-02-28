@@ -1,0 +1,53 @@
+jquery插件就是用来扩展jQuery原型的一个方法。
+
+jQuery插件的使用方式就是jQuery对象方法的调用。
+
+jQuery.fn=jQuery.prototype,也就是说jQueru.fn就是jQuery的原型对象。
+
+插件内部的this就是当前调用插件的jQuery对象。注意：this不需要加$符号.
+
+链式调用是jQuery的风格，插件也应该遵循这个风格。
+$.fn.changeStyle = function(colorStr){
+         this.css("color",colorStr);
+         return this;
+}
+
+防止$符号污染的jQuery插件，我们可以使用立即执行函数通过传参的方式封装插件。
+(function($){
+     
+}(jQuery));
+
+插件参数较多可以定义一个参数对象，然后把需要传给插件的参数放在参数对象中。
+(function($){
+     $.fn.changeStyle = function(option){
+         this.css("color",option.colorStr).css("fontSize",option.fontSize+"px");        
+         return this;
+     }
+
+}(jQuery));
+使用方式如：$("p").changeStyle({colorStr:"red",fontSize:14});
+
+把参数放到一个对象中传给插件还有一个好处就是我们可以在插件内部为一些参数定义一些缺省值，例如：
+(function($){
+
+     $.fn.changeStyle = function(option){
+          var defaultSetting = { colorStr:"green",fontSize:12};
+          var setting = $.extend(defaultSetting,option);
+          this.css("color",setting.colorStr).css("fontSize",setting.fontSize+"px");        
+         return this;
+     }
+}(jQuery));
+
+还有另外一种方式来定义插件，那就是使用$.fn.extend方法
+(function($){
+     $.fn.extend({         
+         changeStyle:function(option){             
+         var defaultSetting = { colorStr:"green",fontSize:12};
+         var setting = $.extend(defaultSetting,option);
+         this.css("color",setting.colorStr).css("fontSize",setting.fontSize+"px");        
+         return this; 
+          }
+     });
+}(jQuery));
+$.extend方法是在jQuery全局对象上扩展方法，$.fn.extend方法是在$选择符选择的jQuery对象上扩展方法。
+所以扩展jQuery的公共方法一般用$.extend方法，定义插件一般用$.fn.extend方法。

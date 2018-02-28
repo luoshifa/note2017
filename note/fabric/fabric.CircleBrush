@@ -1,0 +1,18 @@
+fabric.CircleBrush
+构造函数 new CircleBrush()
+
+类属性成员：
+width(Number)：画刷的宽度，默认值为10。
+
+类函数成员：
+fabric.Point addPoint(Object)：（译者注：文档对本函数的功能没过多说明，从源码得知是对points数组中添加一个点，而这个点是根据参数创建的。该函数的参数是一个包含x、y成员的Object，一般情况下可以看成是fabric.Point的实例。）
+void drawDot(Object)：当鼠标点下和移动时在框架内部进行调用。（译者注：本函数参数的意义和addPoint()函数的参数一样，根据源码可知，在本函数内部内该参数就是给addPoint()函数使用的。）
+fabric.CircleBrush initialize(fabric.Canvas)：构造函数。
+void onMouseDown(Object)：鼠标按下时的事件函数。
+void onMouseMove(Object)：鼠标移动时的事件函数。
+void onMouseUp(Object)：鼠标弹起时的事件函数。
+
+
+
+
+

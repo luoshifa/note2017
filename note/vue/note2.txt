@@ -1,0 +1,28 @@
+computed计算属性(计算缓存：相关依赖发生改变时才会重新计算，不改变则立即返回缓存结果)：
+实例配置中computed里面的属性会实时响应改变叫计算属性。
+
+在method中定义方法也可以定义一个计算属性，每次渲染都会执行函数。
+
+computed属性优于watch属性
+虽然计算属性在大多数情况下更合适，但有时也需要一个自定义的 watcher 。
+这是为什么 Vue 提供一个更通用的方法通过 watch 选项，来响应数据的变化。
+当你想要在数据变化响应时，执行异步操作或开销较大的操作，这是很有用的。
+
+v-else 元素必须紧跟在 v-if 或者 v-else-if 元素的后面——否则它将不会被识别。
+
+Vue 会尽可能高效地渲染元素，通常会复用已有元素而不是从头开始渲染。(主动的行为)。如：
+<template v-if="loginType === 'username'">
+  <label>Username</label>
+  <input placeholder="Enter your username">
+</template>
+<template v-else>
+  <label>Email</label>
+  <input placeholder="Enter your email address">
+</template>
+<button @click="toggleOne">toggle loginType</button>
+v-if切换了类型之后本该两个input是不同的元素，
+但是在vue中input被复用了。所以一开始在一个input中输入，之后切换了状态，输入的值还在。
+有时这是不符合需求的。
+解决方法：
+Vue 为你提供了一种方式来声明“这两个元素是完全独立的——不要复用它们”。只需添加一个具有唯一值的 key 属性即可：
+<input placeholder="Enter your email address" key="email-input">

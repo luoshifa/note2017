@@ -1,0 +1,49 @@
+用JS表示DOM结构	
+DOM很慢，而javascript很快，用javascript对象可以很容易地表示DOM节点。DOM节点包括标签、属性和子节点，通过VElement表示如下。
+
+//虚拟dom，参数分别为标签名、属性对象、子DOM列表
+var VElement = function(tagName, props, children) {
+    //保证只能通过如下方式调用：new VElement
+    if (!(this instanceof VElement)) {
+        return new VElement(tagName, props, children);
+    }
+
+    //可以通过只传递tagName和children参数
+    if (util.isArray(props)) {
+        children = props;
+        props = {};
+    }
+
+    //设置虚拟dom的相关属性
+    this.tagName = tagName;
+    this.props = props || {};
+    this.children = children || [];
+    this.key = props ? props.key : void 666;
+    var count = 0;
+    util.each(this.children, function(child, i) {
+        if (child instanceof VElement) {
+            count += child.count;
+        } else {
+            children[i] = '' + child;
+        }
+        count++;
+    });
+    this.count = count;
+}
+通过VElement，我们可以很简单地用javascript表示DOM结构。比如
+
+var vdom = velement('div', { 'id': 'container' }, [
+    velement('h1', { style: 'color:red' }, ['simple virtual dom']),
+    velement('p', ['hello world']),
+    velement('ul', [velement('li', ['item #1']), velement('li', ['item #2'])]),
+]);
+上面的javascript代码可以表示如下DOM结构：
+
+<div id="container">
+    <h1 style="color:red">simple virtual dom</h1>
+    <p>hello world</p>
+    <ul>
+        <li>item #1</li>
+        <li>item #2</li>
+    </ul>   
+</div>

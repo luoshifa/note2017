@@ -1,0 +1,3 @@
+在一个类的prototype中扩展自己的方法后的一个陷阱：
+使用 for in 循环数组是，这个扩展方法也会被循环出来。
+解决方法：加一个判断条件：arr.hasOwnProperty(i)

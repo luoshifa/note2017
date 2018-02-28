@@ -1,0 +1,28 @@
+成功列子：
+服务：
+app.service('getTicketList', function ($http) {
+  return {
+    getData: function (id) {
+      var path = 'ticket.action?method:projectTickets';
+      if (id)
+        path += '&projectId=' + id.toString();
+      var promise = $http.get(path).then(function (response) {
+          return response;
+      }, function (response) {
+          return response
+      });
+      return promise;
+    }
+  }
+});
+控制器中使用：
+getTicketList.getData($scope.projectId).then(
+  function (res) {
+    $scope.tickets = res.tickets
+  }, 
+  function (rej) {
+  // error handler
+  }
+);
+新版本angular中$http返回的是promise对象
+在服务中的ajax请求需要使用promise对象模式一直promise下去。

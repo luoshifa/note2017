@@ -1,0 +1,102 @@
+数据绑定：
+数据绑定可自动将model和view间的数据同步。
+Angular实现数据绑定的方式，可以让我们把model当做程序
+中唯一可信的数据来源，view始终是model的投影。
+当model发生变化时，会自动放映到view上。
+
+scope
+scope时一个指向应用model的object，也是表达式
+的执行上下文。
+scope被放置于一个类似应用的DOM结构的层次结构中。
+
+$apply
+$scope.$apply(expression)
+$apply()方法可以在angular框架之外执行angular的表达式
+例如：DOM时间，timeout。XHR或其他第三方的库。
+
+angular时怎么知道变量发生了变化：出发脏检查
+angular的策略：
+不会脏检查所有的对象，只有对象呗绑定到HTML
+中，这个对象添加为检查对象。
+不会脏检查所有的属性，同样当属性被绑定后，
+这份属性会被列为检查的属性。
+在angular程序初始化时，会将绑定的对象的属性
+添加为监听对象，也就是说一个对象绑定了N个属性，
+就会添加N个监听器。
+什么时候去脏检查
+angular所有系统的方法中都会触发，比如controller初始化
+的时候，所有已ng开头的方法或属性执行后都会触发脏检查。
+ 
+ 手动触发脏检查：
+ $apply仅仅只是进入angular上下文，然后通过$digest去触发脏价差
+ $apply如果不给参数的话就检查该$scope里的
+ 所有监听的属性，推荐加入参数。
+ $scope.$apply(表达式或函数)
+ 当表达式或函数执行完成后就会触发脏检查。
+ 
+ 
+ $watch
+ 在digest执行时，如果watch观察的value与上次执行时不一样时就会被触发。
+ angular内被的watch实现了页面随model的及时更新。
+ $watch(watchFn,wathcAction,deepWatch);
+ watchFn:angular表达式或函数的字符串
+ watchAction(newValue,oldValue,scope):watchFn发生变化时会被调用。
+ deepWatch：可选的布尔值命令检查被监控的对象的每个属性是否发生变化。
+ $watch会返回一个函数，想要注销这个watch可以使用函数。因为对象时应用类型的。
+ 
+ angular.foreach()的重要性
+ 
+ 指令中的controllerAs是给指令上下文控制器起的别名
+ 指令中require属性的值是该指令所需要的指令的名称：require:direName/^direcName/?direcName
+ 然后在link函数中最后一个参数加上direcName的控制器名称。
+ 
+
+ constant(name,nameValue)此方法首先运行，可以用它来声明整个应用范围内的常量，
+ 并且让他们在所有配置和实例方法中使用
+ value(name,nameValue)只能注入到controller,service,factory
+ 
+ run(fn)想要在注入启动之后执行某些操作，而这些操作需要在页面对用户可用之前执行。
+ 比如加载模板。该函数运行在config之后其它服务之前。
+ 
+ angular指令编译三阶段
+ 将HTML转化陈dom，所以自定义的HTML标签必须符合HTML的格式
+ 搜索匹配directive，按照priority排序，并执行directive上的compile方法
+ 执行directive上的link方法，执行scope绑定及实际
+ 
+ compile和link
+ compile的返回值就是link。
+ 所以有了compile就不需要再写link了。
+ compile:function(tElement,tAttrs,transclude)
+ 
+ compile函数用来对模板进行转换，仅仅在编译阶段运行一次。
+ compile中直接返回的函数是POSTLink，表示link参数需要执行的函数，也可以返回一个对象
+ 里面包含preLink和postLink
+ 当定义compile参数是，将无视link参数，因为compile里面返回的就是
+ 该指令需要执行的link函数。
+ 
+ compile：
+ 想在dom渲染前对它进行变形，并且不需要scope参数
+ 想在所有相同directive里共享某些方法，这是定义在compile里，性能会比较好。
+ 返回值也就是link函数就是共同使用的时候。
+ 
+ link：
+ 对特定的元素注册事件
+ 需要用到scope参数来实现dom元素的一些行为。
+link(scope,iElement,iAttrs,controller)
+link参数代表的是compile返回的postLink
+preLink表示在编译阶段之后，指令连接到子元素之前运行
+POSTLink表示会在所有子元素指令都连接之后才运行
+link函数负责在模型和视图之间进行动态关联，对于每个指令的每个实例，link函数都会执行一次。
+ 
+ 
+ 为什么编译的过程要分为compile和link
+ 简单的说就是为了解决性能问题，特别是那种model变化会
+ 影响dom结构变化的，而变化的结构还会有新的
+ scope绑定及事件绑定，比如ng-repeat
+ 
+ 单页面应用的一个优点，但你点击导航跳转页面时上一个页面的任务还在执行，
+ 比如网易云音乐跳转后还在播放。
+ 缺点是对SEO不友好，不能抓取到数据。
+ 
+ 
+ 

@@ -1,0 +1,5 @@
+require:"myDirective/^myDirective/?myDirective"
+三种方式
+require的值为一个指令名称
+^则在当前指令往上寻找指令
+只有寻找到了指令那么link函数中的controller参数才能被找到，否则undefined

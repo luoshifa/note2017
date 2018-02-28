@@ -1,0 +1,18 @@
+fabric.Gradient
+构造函数：new Gradient()
+
+类属性成员：
+offsetX(Number)：来自PathGroup之外的SVG的各渐变的水平方向偏移量，默认为0。
+offsetY(Number)：来自PathGroup之外的SVG的各渐变的垂直方向偏移量，默认为0。
+
+类函数成员：
+static fabric.Gradient forObject(Object, Objecdt opt)：从指定的Object（第一个参数）中返回对应的fabric.Gradient实例。第二个参数是可选的，具体是什么功能文档中没说。
+static fabric.Gradient fromElement(SVGGradientElement, fabric.Object)：从指定的SVG元素中返回对应的fabric.Gradient实例。第二个参数，文档中也没说，只是指到要参照以下网址：http://www.w3.org/TR/SVG/pservers.html#LinearGradientElement和http://www.w3.org/TR/SVG/pservers.html#RadialGradientElement
+fabric.Gradient addColorStop(Object)：添加一个ColorStop，参数包含了偏移量（offset）和颜色（color）两个属性。（译者注：两个属性的具体名字没有提到，是否还有其他可用属性也没说明）
+fabric.Gradient initialize(Object opt)：这是构造函数。参数则是需要进行初始化的渐变选项，可选，参数中可包含type、coords、gradientUnits和colorStops属性。
+CanvasGradient toLive(CanvasRenderingContext2D)：返回Context上的CanvasGradient实例。
+Object toObject()：返回一个由Object形式表示的渐变。
+string toSVG(Object, boolean)：返回由SVG形式表示的渐变。第一个参数是通过Object创建出对应的渐变；第二个参数则指定是否则SVG中的坐标标准化。
+
+
+

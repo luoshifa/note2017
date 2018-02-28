@@ -1,0 +1,7 @@
+fabric.Observable 命名空间
+
+类函数成员：
+static Self off(String | Object, Function)：停止特定的事件侦听。调用该函数时如果不传参数，则移除所有事件侦听。参数一为事件名称，如"after:render"，或键/值对，如{'after:render': handler, 'selection:cleared': handler}；参数二为将被移除的侦听器函数。
+static Self on(String | Object, Function)：侦听指定的事件。参数一为事件名称，如"after:render"，或键/值对，如{'after:render': handler, 'selection:cleared': handler}；参数二为当指定的事件发生时，接受通知的侦听函数。
+static Self trigger(String, Object opt)：用指定的可选选项触发指定的事件。参数一为将要触发的事件名；参数二可选，为传给侦听函数的参烽。
+

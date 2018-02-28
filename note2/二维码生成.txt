@@ -1,0 +1,1 @@
+"<img src='http://qr.liantu.com/api.php?text='+code_url+'' />"

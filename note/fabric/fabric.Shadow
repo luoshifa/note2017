@@ -1,0 +1,19 @@
+fabric.Shadow
+构造函数：new Shadow()
+
+类属性成员：
+reOffsetsAndBlur：静态属性，正则表达式匹配的水平偏移量、垂直偏移量以及模糊级别，如"2px 2px 10px rgba(0,0,0,0.2)", "rgb(0,255,0) 2px 2px"。
+affectStroke(boolean)：默认false，指定阴影是否会影响四周的操纵杠。
+blur(Number)：阴影的模糊级别。
+color(string)：默认"rgb(0,0,0)"，阴影的颜色。
+includeDefaultValues(boolean)：默认true，指定toObject输出的时候是否包括默认值。
+offsetX(Number)：默认0，阴影的水平偏移量。
+offsetY(Number)：默认0，阴影的垂直偏移量。
+
+类函数成员：
+fabric.Shadow initialize(Object | string opt)：构造函数，Object类型的参数包含着color、blur、offsetX、offsetY属性，string类型的参数可参照"rgba(0,0,0,0.2) 2px 2px 10px, "2px 2px 10px rgba(0,0,0,0.2)"
+Object toObject()：返回以Object表示的阴影。
+string toString()：返回以string表示的阴影，这个string是以css3 text-shadow方式声明的。
+string toSVG(fabric.Object)：返回以SVG string表示的阴影。
+
+

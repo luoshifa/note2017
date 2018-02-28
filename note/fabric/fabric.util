@@ -1,0 +1,76 @@
+fabric.util 命名空间
+
+下级命名空间：
+array
+ease
+object
+string
+
+类属性成员：
+getElementStyle：static成员，从源码可知这是一个函数，返回给定元素的style属性值。
+
+类函数成员：
+static void addClass(DomElement, String)：为指定的DOM元素添加一个class。参数一为指定的DOM元素；参数二为class名字。
+static void addListenter(HTMLElement, String, Function)：为指定的HTML元素添加事件侦听器。参数一为指定的HTML元素；参数二为侦听的事件；参数三为事件处理函数。
+static void animate(Object opt)：在一段特定的时间内将值从一个状态改变成另一个状态，当指定的值进行改变的过程中，回调函数会被调用。参数为Object类型，可选，有如下成员：
+onChange(Function)：可选，回调函数，当值改变时被调用；
+onComplete(Function)：可选，回调函数，当值改变完成时被调用；
+startValue(Number)：可选，默认为0，起始值；
+endValue(Number)：可选，默认为100，终止值；
+byValue(Number)：可选，默认为100，修饰属性的值（译者注：没看懂这个参数的具体意义，但可以肯定是动画函数中起作用的一个参数，源码摘抄如下：function(t, b, c, d) {return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;}，byValue就是那个参数c）。
+easing(Function)：可选，缓动函数。
+duration(Number)：可选，默认500，动画时间，以毫秒为单位。
+static void clipContext(fabric.Object, CanvasRenderingContext2D)：文档中没有对该函数具体的描述。参数一为调用“clipTo”函数的Object；参数2为裁剪的Context。
+static void createAccessors(Object)：基于“stateProperties”数组，创建一个指定类型的存取器（即getXXX，setXXX）。参数为存取器类型。
+CanvasElement createCanvasElement(CanvasElement opt)：创建一个新的canvas元素，如果参数有传值，则以传入的canvas对新canvas进行初始化。
+static void createClass(Function opt, Object opt)：用于定义一个自定义类。参数一可选，要创建的类的父类；参数二可选，为所有该类实例都共享的属性集。
+static HTMLImageElement createImage()：创建一个<Img />元素（用于客户端和nodejs环境）。
+static Number degreesToRadians(Number)：角度值转为弧度值。参数为需要进行转换的角度值。
+static void drawArc(CanvasRenderingContext2D, Number, Number, Array)：画弧。无详细参数说明。
+static void drawDashedLine(CanvasRenderingContext2D, Number, Number, Array)：在两点之间画破折线，本函数用于在选中区域四周画破折线框。参数一为canvas的context；参数二为起始X坐标；参数三为超始Y坐标；参数四为终点X坐标；参数五为终点Y坐标；参数六为破折线样式。
+static void enlivenObjects(Array, Function, String, Function)：根据Object表现的fabric数据创建对应的fabric对象实例。参数一为要转换的Obejct数组；参数二为回调函数，在所有对应的fabric对象实例被创建时调用；参数三为转换的类的命名空间；参数四为更深入的转换回调，在每一个fabric实例创建的时候被调用。
+static boolean falseFunction()：函数内部就一个return false;
+static Array getBoundsOfArc(Number, Number, Number, Number, Number, Number, Number, Number, Number)：计算椭圆弧的四边框。参数一为起点X坐标；参数二为超点Y坐标；参数三为水平弧度；参数四为垂直弧度；参数五为水平axe的角度（译者注：实在不知道这个axe在这里什么意思）；参数六，取值1或0，表示弧在两点之间是大或是小（译者注：这个参数六也不知道是啥意思-_-）；参数七，取值1或0，表示弧的方向是顺时针或逆时针；参数八为终点的X坐标；参数九为终点的Y坐标。
+static HTMLElement | null getById(String | HTMLElement)：传入ID返回对应的HTML元素，如果不存在则返回null。
+static Object getElementOffset(HTMLElement)：返回指定HTML元素的偏移量。返回值的Object中有left和top两个成员属性。
+static String getFunctionBody(Function)：返回一个代表指定函数的字符串。
+static Object getKlass(String, String)：Returns klass "Class" object of given namespace（译者注：不懂这里的klass什么意思，所以不会译）。参数一为Object的类型，如"circle"（译者注：在源码中这个字符串第一个字母会被改成大写，如"Circle"）；参数二为获取klass "Class"的命名空间。
+static Object getPointer(Event, HTMLCanvasElement)：跨浏览器封装的鼠标坐标。参数一为鼠标事件对象；参数二为HTML的<canvas>对象，在该canvas上选中某对象。返回值中有x、y两个成员属性。
+static Number getRandomInt(Number, Number)：在两个指定的数之间，返回一个随机数。参数一为较小的数；参数二为较大的数。
+static void getScript(String, Function)：在HTML文档中插入一个script元素。参数一为script元素的src；参数二为回调函数，在script加载完成时调用。
+static Object getScrollLeftTop(HTMLElement, HTMLElement)：返回元素滚动的偏移量。参数一为在其上操作的HTML元素；参数二为顶层canvas元素。（译者注：字面意思看不出该函数的作用，该函数的源码大致意思就是算参数一的偏移量，至于参数二没太读懂它的意义）。
+static fabric.Object | fabric.PathGroup groupSVGElements(Array, Object opt)：SVG元素组（通常情况下这些都是从SVG文档中获取）。参数一为将形成一组的SVG元素组成的数组；参数二为要传入的选项。
+static Array invertTransform(Array)：将指定的变换矩阵进行倒置。参数为指定的变换矩阵。
+static boolean isTransparent(CanvasRenderingContext2D, Number, Number, Number)：当context在指定的点是透明的状态则返回true（考虑到可容忍阈值）。参数一个canvas的context；参数二为指定点的X坐标；参数三为指定点的Y坐标；参数四为可容忍阈值。
+static void loadImage(String, Function, Any opt, Object opt)：从指定的URL加载图片并传入回调函数。参数一为URL；参数二为回调函数，当图片加载完成后被调用；参数三为传给回调（参数二）的第一个参数；参数四为<img>的crossorigin属性（译者注：虽然文档里是写Object类型，实际上是String类型，可取值有"anoymous"和"use-credentials"，这是个HTML5属性，更多知道见下方）。
+注者注：（关于crossorgin详细描述，来自https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img，这一段就不翻译了^_^）：
+crossorigin HTML5
+This enumerated attribute indicates if the fetching of the related image must be done using CORS or not. CORS-enabled images can be reused in the <canvas> element without being tainted. The allowed values are:
+"anonymous"
+A cross-origin request (i.e., with Origin: HTTP header) is performed. But no credential is sent (i.e., no cookie, no X.509 certificate, and no HTTP Basic authentication is sent). If the server does not give credentials to the origin site (by not setting the Access-Control-Allow-Origin: HTTP header), the image will be tainted and its usage restricted.
+"use-credentials"
+A cross-origin request (i.e., with Origin: HTTP header) performed with credential is sent (i.e., a cookie, a certificate, and HTTP Basic authentication is performed). If the server does not give credentials to the origin site (through Access-Control-Allow-Credentials: HTTP header), the image will be tainted and its usage restricted.
+When not present, the resource is fetched without a CORS request (i.e., without sending the Origin: HTTP header), preventing its non-tainted usage in <canvas> elements. If invalid, it is handled as if the enumerated keyword anonymous was used. See CORS settings attributes for additional information.
+static HTMLElement makeElement(String, Object)：使用指定的属性集创建指定的HTML元素。参数一为HTML元素标签名；参数二为指定的属性集。
+static HTMLElement makeElementSelectable(HTMLElement)：将HTML元素变为可选。
+static HTMLElement makeElementUnselectable(HTMLElement)：将HTML元素变为不可选。
+static Array MultiplyTransformMatrices(Array, Array)：将两个变换矩阵相乘，返回结果变换矩阵。
+static Number | String parseUnit(Number | String)：在可行的情况下，将属性值转为像素值。如果不能进行转换，则返回原属性值。参数为需要转换的属性值。（译者注：从源码中可值，参数形如"10cm"，单位还可以是mm/cm/in/pt/pc/em）（译者再注：源码中还有第二个参数fontSize，如果没传该参数，则默认值为fabric.Text.DEFAULT_SVG_FONT_SIZE）
+static Array pupulateWithProperties(Object, Object)：将指定的属性集中的属性从一个源Object复制到目标Object。参数一为源Object；参数二为目标Object。（译者注，源码中还有第三个参数properties的属性集，类型为[object Array]，如果没有这个参数函数不会执行，不知道为什么文档中将这个参数丢了。）
+static Number radiansToDegrees(Number)：角度转弧度。参数为需要转换的角度值。
+static Array removeFromArray(Array, Any)：将指定的值从数组中移除。参数一为数组；参数二为需要移除的值。（译者注：如果指定的值出现多次，只会移除出现的第一个；内部是用indexOf和splice实现的，时间/空间代价都非常昂贵）。
+static void removeListener(HTMLElement, String, Function)：从指定的HTML元素上移除指定的侦听事件函数。
+static XMLHttpRequest Request(String, Object)：兼容各种浏览器发送请求。参数一为目标URL；参数二有两个成员：第一个成员为method，可选，默为个"GET"，可以为"POST"或"PUT"，第二个成员为onComplete的回调函数函数，函数的参数为该XMLHttpRequest实例。（译者注：从源码中可知Object还有第三个成员：paramaters，String类型，当method为GET时会加到URL上。）
+static void requestAnimFrame(Function, DOMElement)：该函数是基于http://paulirish.com/2011/requestanimationframe-for-smart-animating/，用于获取精确的起始时间。该函数需要作为方法的入口被调用。参数一回调函数；参数二为与动画相产的DOM元素。（译者注：该函数说明写得不清不楚，详细信息可参考上面这个URL。）
+static Object resolveNamespace(String)：分解给定的命名空间。参数为提定的命名空间，如" fabric.Image.filter "或"fabric"。
+static fabric.Point rotatePoint(fabric.Point, fabric.Point, Number)：围绕着指定的“原点（参数二）”，将指定的“点（参数一）”绕一个指定的“弧度（参数三）”值。
+static HTMLElement setStyle(HTMLElement, Object)：兼容各种浏览器，为指定的HTML元素设置样式。参数一为HTML元素；参数二为样式集。
+static Array toArray(Object)：将近似数组格式的Object转为数组
+static Number toFixed(Number | String, Number)：Number的toFixed函数的封装，但不同的是返回Number类型而不是String类型。参数一为需要进行舍入操作的数字或字符串；参数二为精度值。
+static fabric.Point transformPoint(fabric.Point, Array, boolean opt)：将变换矩阵作用于指定点。参数一为指点的点；参数二为变换矩阵；参数三可选，指明偏移量是否被应用。
+static HTMLElement wrapElement(HTMLElement, HTMLElement | String, Object opt)：用另一个HTML元素将指定的HTML元素进行包裹。参数一为需要被包裹的HTML元素，即内层HTML元素；参数二则为外层HTML元素；参数三为作用于外层HTML元素的属性集。
+
+
+
+
+

@@ -1,0 +1,37 @@
+浏览器缓存是浏览器端保存数据用于快速读取或避免重复资源请求的优化机制，
+有效的缓存使用可以避免重复的网络请求和浏览器快速地读取本地数据，整体上加速网页展示给用户。
+浏览器端缓存的机制种类较多，总体归纳为九种，这里详细分析下这九种缓存机制的原理和使用场景。
+打开浏览器的调试模式->resources左侧就有浏览器的8种缓存机制。
+一、http缓存
+http缓存是基于HTTP协议的浏览器文件级缓存机制。即针对文件的重复请求情况下，
+浏览器可以根据协议头判断从服务器端请求文件还是从本地读取文件，
+chrome控制台下的Frames即展示的是浏览器的http文件级缓存。以下是浏览器缓存的整个机制流程。
+主要是针对重复的http请求，在有缓存的情况下判断过程主要分3步：
+◆判断expires，如果未过期，直接读取http缓存文件，不发http请求，否则进入下一步。
+◆判断是否含有etag，有则带上if-none-match发送请求，未修改返回304，修改返回200，否则进入下一步。
+◆判断是否含有last-modified，有则带上if-modified-since发送请求，无效返回200，有效返回304，否则直接向服务器请求。 
+如果通过etag和last-modified判断，即使返回304有至少有一次http请求，
+只不过返回的是304的返回内容，而不是文件内容。
+所以合理设计实现expires参数可以减少较多的浏览器请求。
+四、cookie
+Cookie(或者Cookies)，指一般网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据(通常经过加密)。
+cookie一般通过http请求中在头部一起发送到服务器端。一条cookie记录主要由键、值、域、过期时间、大小组成
+，一般用户保存用户的认证信息。cookie最大长度和域名个数由不同浏览器决定，具体如下：
+浏览器 支持域名个数 最大长度 IE7以上 50个 4095B Firefox 50个 4097B Opera 30个 4096B Safari/WebKit 无限制 4097B
+不同域名之间的cookie信息是独立的，如果需要设置共享可以在服务器端设置cookie的path和domain来实现共享。
+浏览器端也可以通过document.cookie来获取cookie，并通过js浏览器端也可以方便地读取/设置cookie的值。
+https://github.com/component/cookie/blob/master/index.js
+五、localstorage
+localStorage是html5的一种新的本地缓存方案，目前用的比较多，
+一般用来存储ajax返回的数据，加快下次页面打开时的渲染速度。
+浏览器 最大长度 IE9以上 5M Firefox 8以上 5.24M Opera 2M Safari/WebKit 2.6M //localStorage
+核心API: localStorage.setItem(key, value)    //设置记录 
+localStorage.getItem(key)           //获取记录 
+localStorage.removeItem(key)        //删除该域名下单条记录
+ localStorage.clear()                //删除该域名下所有记录 
+值得注意的是，localstorage大小有限制，不适合存放过多的数据，
+如果数据存放超过最大限制会报错，并移除最先保存的数据。
+https://github.com/machao/localStorage
+六、sessionstorage
+sessionStorage和localstorage类似，但是浏览器关闭则会全部删除，
+api和localstorage相同，实际项目中使用较少。

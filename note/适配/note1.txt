@@ -1,0 +1,30 @@
+js计算好不同设备的rem后
+需要对某个元素使用rem时计算出对应rem即可。
+
+字体：字体可以使用以上方法，使得在不同设备上大小基本一致。
+
+如果在不允许使用rem设置字体是可以对字体单独使用媒体查询。以下是建议值。
+
+@media screen and (min-width: 320px) {
+    html {font-size: 14px;}
+}
+ 
+@media screen and (min-width: 360px) {
+    html {font-size: 16px;}
+}
+ 
+@media screen and (min-width: 400px) {
+    html {font-size: 18px;}
+}
+ 
+@media screen and (min-width: 440px) {
+    html {font-size: 20px;}
+}
+ 
+@media screen and (min-width: 480px) {
+    html {font-size: 22px;}
+}
+ 
+@media screen and (min-width: 640px) {
+    html {font-size: 28px;}
+}
